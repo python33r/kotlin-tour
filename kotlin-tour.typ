@@ -421,6 +421,36 @@ println(grade(42))   // prints Pass
 
 == Functions: Block Form
 
+#codly(highlights: (
+  (line: 0, start: 38, end: 45),
+  (line: 5, start: 5, end: 14),
+))
+```kotlin
+fun sumSquares(numbers: List<Double>): Double {
+    var sum = 0.0
+    for (number in numbers) {
+        sum += number * number
+    }
+    return sum
+}
+```
+
+== But Wait...
+
+We don't really need to write a `sumSquares` function.
+
+Kotlin's *functional programming* support let us do it in one line!
+
+#pad(left: 1.5em)[`numbers.sumOf { it * it }`]
+
+#pause
+
+#v(.5em)
+- `sumOf()` is a method we can call on collections
+- It expects a 'selector function' that determines values to be summed
+- We provide that selector as a lambda expression
+- Each value taken from the collection can be referenced as `it`
+
 = Classes & OOP
 
 == Simplest Class
