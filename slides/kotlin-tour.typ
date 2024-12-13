@@ -1,4 +1,5 @@
 #import "@preview/gentle-clues:1.0.0": *
+#import "@preview/octique:0.1.0": octique
 
 #import "@preview/codly:1.1.1": *
 #import "@preview/codly-languages:0.1.1": *
@@ -42,8 +43,8 @@ Nick Efford
 Naturally, we will miss a _lot_ of stuff out...
 
 #v(.3em)
-#code(title: "Code Examples")[
-  `https://github.com/python33r/kotlin-examples.git`
+#code(title: "Slides & Code", icon: octique("mark-github"))[
+  `https://github.com/python33r/kotlin-tour.git`
 ]
 
 = Kotlin Basics

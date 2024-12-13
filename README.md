@@ -1,13 +1,12 @@
 # kotlin-tour
 
-[Typst][typ] slides for proposed 'Tour of Kotlin' presentation.
+Slides and code examples for proposed 'Tour of Kotlin' presentation.
 
-To generate the PDF, make sure the Typst binary is in your PATH, then do
+The slides are for a session that lasts no more than 2 hours, with a break
+in the middle.
 
-    typst c kotlin-tour.typ
+The code examples are for session attendees to study in their own time
+so that they can develop a feel for what Kotlin is like.
 
-For a fully accurate render without warnings, make sure that the
-[Fira Code][fc] font is installed on your system.
-
-[typ]: https://github.com/typst/typst
-[fc]: https://github.com/tonsky/FiraCode
+Neither the slides not the code examples are intended to provide exhaustive
+coverage of the language. A _lot_ has been deliberately left out.
