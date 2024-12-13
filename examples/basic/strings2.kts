@@ -16,7 +16,8 @@ str.forEach {
 
 // Invoking methods on a string
 
-println(str.isEmpty())
+println(str.isEmpty())     // false: string contains chars
+println(str.isBlank())     // false: at least 1 char isn't whitespace
 println(str.uppercase())   // returns a new string
 println(str)               // ...so str is unchanged
 

@@ -14,3 +14,6 @@ line arguments, if expressions and string interpolation.
 `varval.kts` is some KotlinScript demonstrating the difference between
 `var` and `val`. You should also take a look at `mutable.kts`, which shows
 that declaring something as `val` doesn't necessarily make it constant.
+
+`strings1.kts` and `strings2.kts` provide various examples of Kotlin string
+handling (properties, indexing, slicing, iteration, invoking methods).
