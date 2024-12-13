@@ -4,7 +4,7 @@
 
 To generate the PDF, make sure the Typst binary is in your PATH, then do
 
-    typst c kotlin-tour.typ
+    typst c slides.typ
 
 For a fully accurate render without warnings, make sure that the
 [Fira Code][fc] font is installed on your system.
