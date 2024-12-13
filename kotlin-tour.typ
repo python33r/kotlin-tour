@@ -449,7 +449,49 @@ Kotlin's *functional programming* support let us do it in one line!
 - `sumOf()` is a method we can call on collections
 - It expects a 'selector function' that determines values to be summed
 - We provide that selector as a lambda expression
-- Each value taken from the collection can be referenced as `it`
+- Values from collection referenced via special variable `it`
+
+== Other Examples
+
+Take a list of integers and generating a new list containing the squares
+of only the even values:
+
+#pad(left: 1.5em, no-codly[
+  ```
+  numbers.filter { it % 2 == 0 }
+         .map { it * it }
+  ```
+])
+
+#v(.5em)
+Remove empty strings from a list and organise remaining strings into
+groups keyed by first letter:
+
+#pad(left: 1.5em, no-codly[
+  ```
+  names.filter { it.isNotBlank() }
+       .groupBy { it.first() }
+  ```
+])
+
+#speaker-note[
+  Second example returns a map of chars onto lists of strings.
+
+  Both of these are efficient. The `filter` doesn't create an intermediate
+  list.
+
+  Many complex operations can be expressed very concisely using this
+  functional programming style.
+]
+
+== Things We've Not Covered
+
+These are important, but we don't have time to look at them.
+
+- Nullable types
+- Scope functions
+  - `also`, `apply`, `let`, `run`, `with`
+- Extension functions
 
 = Classes & OOP
 
