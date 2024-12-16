@@ -17,3 +17,11 @@ that declaring something as `val` doesn't necessarily make it constant.
 
 `strings1.kts` and `strings2.kts` provide various examples of Kotlin string
 handling (properties, indexing, slicing, iteration, invoking methods).
+
+`rawstr.kts` shows how to create and use 'raw' (triple-quoted) strings.
+
+`when.kts` gives several examples of using `when`, both as an expression
+and as a statement.
+
+`repetition.kts` demonstrates various ways of repeatedly executing Kotlin
+code (for loop, while loop and the `repeat` function).
