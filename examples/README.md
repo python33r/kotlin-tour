@@ -1,7 +1,7 @@
 # examples
 
-Various examples of Kotlin code, to help session attendees gain a sense
-of what Kotlin feels like as a language.
+Various examples of Kotlin code, to help you get a sense of what Kotlin
+feels like as a language.
 
 Files with names ending in `.kts` are KotlinScript files. These do not need
 to be compiled explicitly. You can run them with
