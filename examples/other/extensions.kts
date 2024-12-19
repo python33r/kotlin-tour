@@ -1,8 +1,14 @@
-// Examples of extension functions and extension properties
+// Examples of extensions to built-in types
+
+// Example 1: adding a randomize() method to strings
 
 fun String.randomize() = this.toList().shuffled().joinToString("")
 
-println("Hello World".randomize())
+val str = "Hello World"
+println("Original string: $str")
+println("Randomized: ${str.randomize()}")
+
+// Example 2: extending Int with isEven & isOdd properties
 
 val Int.isEven: Boolean get() = this % 2 == 0
 val Int.isOdd: Boolean get() = ! isEven
