@@ -1,11 +1,11 @@
-#import "@preview/gentle-clues:1.0.0": *
+#import "@preview/gentle-clues:1.1.0": *
 #import "@preview/octique:0.1.0": octique
 
 #import "@preview/codly:1.1.1": *
 #import "@preview/codly-languages:0.1.1": *
 #show: codly-init.with()
 
-#import "@preview/touying:0.5.3": *
+#import "@preview/touying:0.5.5": *
 #import themes.simple: *
 #show: simple-theme.with(
   aspect-ratio: "16-9",
@@ -19,11 +19,21 @@
         stroke: 1.5pt + luma(200),
       )
     },
+    new-section-slide-fn: section => {
+      touying-slide-wrapper(self => {
+        touying-slide(self: self, {
+          set align(center + horizon)
+          set text(size: 2em)
+          utils.display-current-heading(level: 1)
+        })
+      })
+    },
     //show-notes-on-second-screen: right,
   ),
 )
 
 #show raw: set text(font: "Fira Code", weight: 400)
+#show link: set text(font: "Fira Code", weight: 400, size: 0.8em)
 
 #title-slide[
 = A Tour of Kotlin
@@ -44,7 +54,7 @@ Naturally, we will miss a _lot_ of stuff out...
 
 #v(.3em)
 #code(title: "Slides & Code", icon: octique("mark-github"))[
-  `https://github.com/python33r/kotlin-tour.git`
+  #link("https://github.com/python33r/kotlin-tour.git")
 ]
 
 = Kotlin Basics
@@ -74,7 +84,7 @@ fun main() {
 ```
 
 - Less 'scaffolding' than Java
-- No need to define classes unless we want them!
+- No need to define classes unless we want them
 - No semicolons!
 
 #pause
@@ -92,13 +102,14 @@ For this simple case:
   ```
 ])
 
-More generally (and portably):
+#pause
+
+Multiple `.class` files can be bundled:
 
 #pad(left: 1em, no-codly[
   ```
-  kotlinc -include-runtime -d app.jar file1.kt file2.kt...
-  kotlin app.jar
-  java -jar app.jar   # also works!
+  kotlinc -d app.jar main.kt file2.kt file3.kt...
+  kotlin -cp app.jar MainKt
   ```
 ])
 
@@ -106,12 +117,31 @@ More generally (and portably):
 (or let your IDE handle it... #emoji.face.wink)
 
 #speaker-note[
-  Frustratingly, you need to bundle the KSL with your code if you want to
-  use the second approach, even though the `kotlin` application is perfectly
-  capable of locating the KSL itself.
+  `-cp` option sets classpath, just as it would for a Java application.
+]
 
-  On the plus side, the JAR file yielded by second approach is portable to
-  systems that don't have Kotlin installed; all they need is a JVM.
+== Portability
+
+To include the Kotlin runtime library:
+
+#pad(left: 1em, no-codly[
+  ```
+  kotlinc -include-runtime -d app.jar main.kt file2.kt...
+  kotlin app.jar
+  java -jar app.jar   # also works!
+  ```
+])
+
+#speaker-note[
+  Frustratingly, you need to bundle the KSL with your code if you want to
+  run with a simple `kotlin app.jar` command, even though the `kotlin`
+  application is perfectly capable of locating the KSL itself.
+]
+
+#v(0.5em)
+#info[
+  This increases the size of the JAR file substantially, but it will
+  then be portable to any system with a JVM...
 ]
 
 == Program Args & String Interpolation
@@ -171,7 +201,7 @@ fun main(args: Array<String>) {
 
 #v(0.5em)
 #tip(title: "Idiomatic Kotlin")[
-Prefer `val` to `var`; use latter only when updating is necessary
+  Prefer `val` to `var`; use latter only when updating is necessary
 ]
 
 == Built-in Data Types
@@ -208,10 +238,10 @@ Very similar to Java, except
 
 ```kotlin
 val grade = when (mark) {
-  in 70..100 -> "Distinction"
-  in 40..69  -> "Pass"
-  in 0..39   -> "Fail"
-  else       -> throw Exception("Bad mark: $mark")
+    in 70..100 -> "Distinction"
+    in 40..69  -> "Pass"
+    in 0..39   -> "Fail"
+    else       -> throw Exception("Bad mark: $mark")
 }
 ```
 
@@ -227,11 +257,11 @@ val grade = when (mark) {
 
 ```kotlin
 when (dayOfWeek) {
-  "Monday", "Tuesday"  -> println("At work")
-  "Wednesday"          -> println("Day off")
-  "Thursday", "Friday" -> println("At work again")
-  "Saturday"           -> println("Shopping")
-  "Sunday"             -> println("Sleep")
+    "Monday", "Tuesday"  -> println("At work")
+    "Wednesday"          -> println("Day off")
+    "Thursday", "Friday" -> println("At work again")
+    "Saturday"           -> println("Shopping")
+    "Sunday"             -> println("Sleep")
 }
 ```
 
@@ -316,7 +346,7 @@ repeat(10) {
 Kotlin provides handy 'factory functions' to create collections:
 ```kotlin
 val fruit = setOf("Apple", "Banana", "Kiwi")
-fruit.add("Orange")
+fruit.add("Orange")   // will this work?
 ```
 
 #pause
@@ -335,6 +365,8 @@ If you want mutable collections, you must be explicit:
 val fruit = mutableSetOf("Apple", "Banana", "Kiwi")
 fruit.add("Orange")
 ```
+
+#pause
 
 ```kotlin
 val data = mutableListOf<Double>()
@@ -400,10 +432,10 @@ Remember that `when` expression from earlier?
 
 ```kotlin
 fun grade(mark: Int) = when (mark) {
-  in 70..100 -> "Distinction"
-  in 40..69  -> "Pass"
-  in 0..39   -> "Fail"
-  else       -> throw Exception("Bad mark: $mark")
+    in 70..100 -> "Distinction"
+    in 40..69  -> "Pass"
+    in 0..39   -> "Fail"
+    else       -> throw Exception("Bad mark: $mark")
 }
 ```
 
@@ -487,7 +519,7 @@ groups keyed by first letter:
 
 == Things We've Not Covered
 
-These are important, but we don't have time to look at them.
+These are important, but we don't have time to look at them:
 
 - Nullable types
 - Scope functions
