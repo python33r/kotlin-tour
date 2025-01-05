@@ -5,20 +5,26 @@ Examples of defining and using classes in Kotlin.
 `Account.java` contains the definition of a basic entity class in Java,
 for representing bank accounts, plus a small test program.
 
-`Account.kt` is the Kotlin equivalent of `Account.java`. Notice how close
+`account.kt` is the Kotlin equivalent of `Account.java`. Notice how close
 to 50 lines of Java class definition condense to *a single line of Kotlin*.
 
 (To be fair, Java has the `Record`, with which a simple entity class can
 also be defined with a single line of code - but this works only for cases
 where all fields of the class are immutable.)
 
-`Person.kt` contains a basic definition for a `Person` class, plus a test
+`person.kt` contains a basic definition for a `Person` class, plus a test
 program. This class has a read-only property and a writeable property.
 It has a constructor that initializes these properties, but it does no
 validation on the values used for initialization. It has implicit getter
 and setter methods for the properties, but no other methods.
 
-`Rectangle.kt` containa the definition of a `Rectangle` class, plus a test
+`person2.kt` is a slightly more complex version of `Person` demonstrating
+how we can introduce properties that are not initialised via the constructor.
+
+`person3.kt` is yet another version of `Person`, this time showing how
+methods can be defined or overridden in a class.
+
+`Rectangle.kt` contains the definition of a `Rectangle` class, plus a test
 program. This is more sophisticated than the `Person` class. It has an
 `init` block to validate constructor parameters. This uses the `require`
 function, which generates an `IllegalArgumentException` if the tests
