@@ -28,12 +28,19 @@
         })
       })
     },
+    horizontal-line-to-pagebreak: false,
     //show-notes-on-second-screen: right,
   ),
 )
 
+// Classic hyperlink styling ;-)
+#show link: it => underline(
+  stroke: 1pt,
+  offset: 1.5pt,
+  text(blue, it)
+)
+
 #show raw: set text(font: "Fira Code", weight: 400)
-#show link: set text(font: "Fira Code", weight: 400, size: 0.8em)
 
 #title-slide[
 = A Tour of Kotlin
@@ -54,6 +61,7 @@ Naturally, we will miss a _lot_ of stuff out...
 
 #v(.3em)
 #code(title: "Slides & Code", icon: octique("mark-github"))[
+  #set text(font: "Fira Code", size: 0.8em)
   #link("https://github.com/python33r/kotlin-tour.git")
 ]
 
@@ -73,6 +81,8 @@ println("Hello World!")
 
 #speaker-note[
   Demo: `kotlin hello.kts`
+
+  (Comment on 'slowness'?)
 ]
 
 == Simplest Program, Take 2
@@ -117,7 +127,15 @@ Multiple `.class` files can be bundled:
 (or let your IDE handle it... #emoji.face.wink)
 
 #speaker-note[
-  `-cp` option sets classpath, just as it would for a Java application.
+  Kotlin's JVM compiler generates Java bytecode, and JVM requires that
+  bytecode is organised as classes, so compiler creates this structure
+  for us behind the scenes, allowing us to adopt a procedural style
+  in source code.
+
+  + Compile `hello.kt` & run program
+  + Disassemble with `javap -c HelloKt`
+
+  Second example: `-cp` option sets classpath, just as it would in Java.
 ]
 
 == Portability
@@ -132,16 +150,16 @@ To include the Kotlin runtime library:
   ```
 ])
 
-#speaker-note[
-  Frustratingly, you need to bundle the KSL with your code if you want to
-  run with a simple `kotlin app.jar` command, even though the `kotlin`
-  application is perfectly capable of locating the KSL itself.
-]
-
 #v(0.5em)
 #info[
   This increases the size of the JAR file substantially, but it will
   then be portable to any system with a JVM...
+]
+
+#speaker-note[
+  Frustratingly, you need to bundle the KSL with your code if you want to
+  run with a simple `kotlin app.jar` command, even though the `kotlin`
+  application is perfectly capable of locating the KSL itself...
 ]
 
 == Program Args & String Interpolation
@@ -202,6 +220,13 @@ fun main(args: Array<String>) {
 #v(0.5em)
 #tip(title: "Idiomatic Kotlin")[
   Prefer `val` to `var`; use latter only when updating is necessary
+]
+
+#speaker-note[
+  An object defined with `val` can still change state if it has methods
+  that change the values of fields.
+
+  Think of `val` as equivalent to using `final` in Java.
 ]
 
 == Built-in Data Types
@@ -285,7 +310,10 @@ when (dayOfWeek) {
   ```
 
   #speaker-note[
-    Second range example can also be written `1 until 10`.
+    What do you think the second `for` example prints?
+
+    If you really want to do more typing #emoji.face.wink, range in second
+    example can also be written `1 until 10`.
 
     Can express a descending range with `10 downTo 1`.
 
@@ -325,6 +353,8 @@ repeat(10) {
 
   (It can be put there, but Kotlin allows lambdas that are the final
   argument to be put outside, which looks neater)
+
+  More on lambdas shortly...
 ]
 
 == Collections
@@ -404,7 +434,10 @@ println(data.average())
   ```
 
 #speaker-note[
-  What do you think this prints?
+  Element access will throw an exception if the supplied index or key
+  is invalid; if you don't want this, use one of the alternatives.
+
+  What do you think this example prints?
 ]
 
 == Iteration Patterns
@@ -482,7 +515,14 @@ Kotlin's *functional programming* support let us do it in one line!
 - `sumOf()` is a method we can call on collections
 - It expects a 'selector function' that determines values to be summed
 - We provide that selector as a lambda expression
-- Values from collection referenced via special variable `it`
+- Collection's values are referenced via special variable `it`
+
+#speaker-note[
+  This is an example of how concise yet expressive Kotlin can be.
+
+  Lambda expressions have a longer form, but Kotlin allows them to be
+  abbreviated in several ways, depending on the context.
+]
 
 == Other Examples
 
@@ -495,6 +535,8 @@ of only the even values:
          .map { it * it }
   ```
 ])
+
+#pause
 
 #v(.5em)
 Remove empty strings from a list and organise remaining strings into
@@ -510,11 +552,12 @@ groups keyed by first letter:
 #speaker-note[
   Second example returns a map of chars onto lists of strings.
 
-  Both of these are efficient. The `filter` doesn't create an intermediate
-  list.
-
   Many complex operations can be expressed very concisely using this
   functional programming style.
+
+  If we convert the lists to sequences at the start of a chain of ops,
+  then the operations will be efficient because they won't create
+  any intermediate lists...
 ]
 
 == Things We've Not Covered
@@ -528,6 +571,63 @@ These are important, but we don't have time to look at them:
 
 = Classes & OOP
 
-== Simplest Class
+== Conciseness of Kotlin
+
+Consider how we would write a small bank account class with three fields:
+ID, holder name, balance (latter being mutable)
+
+This can require *more than 50 lines of Java* (constructor, getters, setter,
+`equals()`, `hashCode()`, `toString()`, etc)
+
+#pause
+
+...or *a single line of Kotlin*:
+
+#pad(left: 1.5em, no-codly[
+  ```
+  data class Account(val id: Int, val name: String,
+    var balance: Int)
+  ```
+])
+
+#speaker-note[
+  This conciseness is one of the big reasons why Kotlin has attracted so
+  much attention from Java programmers.
+
+  This is a *data class*. Compiler does extra work for data classes,
+  generating `equals()`, `hashCode()` and `toString()` methods for us.
+
+  Recent versions of Java have the `record`, which also allows a one-line
+  definition---but with the limitation that records are immutable.
+
+  Demo: compare `Account.java` with `account.kt`, then compile & run both.
+]
+
+== A Basic Class
+
+```kotlin
+class Person(var name: String, val birth: LocalDate)
+```
+
+#pause
+
+- `name` is a writeable *property*, `birth` is a read-only property
+
+#pause
+
+- Properties are abstractions: compiler creates a hidden field, getter
+  method and setter method, which are used implicitly when we access
+  a property
+
+#pause
+
+- `Person` will be given a two-parameter constructor that initializes
+  the two properties
+
+== Using The Class
+
+== Adding Properties
+
+== Adding Methods
 
 == Inheritance
