@@ -2,6 +2,8 @@
 
 Examples of defining and using classes in Kotlin.
 
+## Basic Examples
+
 `Account.java` contains the definition of a basic entity class in Java,
 for representing bank accounts, plus a small test program.
 
@@ -24,6 +26,8 @@ how we can introduce properties that are not initialized via the constructor.
 `person3.kt` is yet another version of `Person`, this time showing how
 methods can be defined or overridden in a class.
 
+## More Advanced Examples
+
 `rectangle.kt` contains the definition of a `Rectangle` class, plus a test
 program. This is more sophisticated than the `Person` class. It has an
 `init` block to validate constructor parameters. This uses the `require`
@@ -44,3 +48,7 @@ data class, using `Person` as an example.
 Kotlin provides the equivalent of Java's static fields and static methods.
 In this example, the companion object is used to partially implement the
 Factory Method design pattern.
+
+`shapes.kt` shows how to inherit from a superclass in Kotlin; `shapes2.kt`
+expands on this example, making the superclass abstract; `shapes3.kt`
+further expands on the example by introducing and using an interface.

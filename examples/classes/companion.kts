@@ -4,8 +4,6 @@ class Person private constructor(val name: String) {
     // 'private constructor' above indicates that we cannot
     // create a Person object directly (see below)
 
-    var isMarried = false
-
     companion object {
         // Code below would be a static field and static method in Java,
         // but in Kotlin we must put it inside a 'companion object'
@@ -22,11 +20,6 @@ class Person private constructor(val name: String) {
             names.add(name)
             return Person(name)
         }
-    }
-
-    override fun toString() = when(isMarried) {
-        true -> "$name, married"
-        false -> "$name, unmarried"
     }
 }
 
