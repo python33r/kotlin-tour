@@ -626,8 +626,166 @@ class Person(var name: String, val birth: LocalDate)
 
 == Using The Class
 
+```kotlin
+fun main() {
+    val date = LocalDate.of(1992, 8, 23)
+    val p = Person("Joe", birth=date)    // no 'new'
+
+    println(p.name)   // invokes getter method
+    p.name = "David"  // invokes setter
+
+    p.birth = LocalDate.of(1995, 9, 23)  // error!
+}
+```
+
+#speaker-note[
+  Not seen this before now, but you can specify args to Kotlin methods &
+  functions with keyword syntax, as in Python. Here, it makes code clearer.
+
+  Significance of Kotlin using getter and setter methods behind the scenes
+  is that these methods can be overridden (see later).
+]
+
 == Adding Properties
+
+Properties that are not initialized via the constructor are introduced
+within the class definition body:
+
+```kotlin
+class Person(var name: String, val birth: LocalDate) {
+    var isMarried = false
+    // Note: property MUST be initialized!
+}
+```
 
 == Adding Methods
 
+```kotlin
+class Person(var name: String, val birth: LocalDate) {
+
+    fun age(): Int {
+        val today = LocalDate.now()
+        return YEARS.between(birth, today).toInt()
+    }
+
+    override fun toString() = "$name, born on $birth"
+}
+```
+
+== Computed Properties
+
+We can have a more natural `Person` API, in which a person's age is treated
+as a property instead of an explicit method call:
+
+```kotlin
+class Person(var name: String, val birth: LocalDate) {
+    val age: Int
+        get() {
+            val today = LocalDate.now()
+            return YEARS.between(birth, today).toInt()
+        }
+}
+```
+
+== Overriding Setters
+
+How do we stop someone giving a `Person` an invalid name (e.g., an
+empty string or blank string)?
+
+```kotlin
+class Person(n: String, val birth: LocalDate) {
+    var name = n
+        set(value) {
+            require(value.isNotBlank()) { "Blank name!" }
+        }
+}
+```
+
+#speaker-note[
+  This is where IMO the syntax starts to get less elegant, even a little
+  confusing.
+
+  `require` function accepts a boolean expression and throws an exception
+  if it is false, using the provided lambda expression to generate the
+  error message.
+
+  Note that this _won't_ stop the creation of a `Person` with an invalid
+  name, because setter is only used for assignments to the property of an
+  already existing object...
+]
+
+== Initializer Blocks
+
+We can inject our own code into the object contruction process:
+```kotlin
+class Person(n: String, val birth: LocalDate) {
+    init {
+        require(n.isNotBlank()) { "Blank name!" }
+    }
+
+    var name = n ...
+}
+```
+
+#speaker-note[
+  Again, not very elegant!
+
+  How would our students take to this?
+
+  Demo: `rectangle.kt`
+]
+
 == Inheritance
+
+- All classes inherit implicitly from `Any` (like `Object` in Java)
+
+- We specify inheritance using `:` rather than `extends`
+
+- A class cannot act as a superclass by default; to enable inheritance
+  we must mark it with `open`
+
+- A method in a superclass cannot be overridden by default; to enable
+  overriding, we must mark it with `open`
+
+- Properties can be overridden too! (if marked `open` in superclass)
+
+== Example
+
+```kotlin
+typealias Coord = Pair<Double,Double>
+
+open class Shape(val position: Coord)
+
+class Circle(pos: Coord, val radius: Double): Shape(pos)
+
+class Rectangle(pos: Coord,
+  val width: Double, val height: Double): Shape(pos)
+```
+
+#speaker-note[
+  Worth stressing again the conciseness of this. Four lines of Kotlin give
+  us a hierarchy of one superclass and two subclasses, each with fields,
+  constructor, getters and setters.
+]
+
+== Abstract Classes
+
+== Interfaces
+
+== Things We've Not Covered
+
+- Nested / inner classes
+- Sealed classes
+- Enums
+- Data classes
+- Generic types
+- Companion objects
+- Creating singletons with `object`
+
+#speaker-note[
+  We would cover some of these if we adopted Kotlin.
+]
+
+== Learning More
+
+- #link("https://kotlinlang.org/docs/kotlin-tour-welcome.html")[JetBrains Kotlin Tour]
