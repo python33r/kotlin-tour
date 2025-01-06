@@ -5,7 +5,7 @@
 var x: Int           // types can be declared explicitly
 var y = 12.87        // ...or can be inferred (recommended approach)
 
-x = 1                // initialisation can be later if it is before first use
+x = 1                // initialization can be later if it is before first use
 x = 42               // ...and reassignment is possible
 
 println("x = $x, y = $y")

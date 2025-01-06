@@ -1,8 +1,8 @@
 import java.time.LocalDate
 
 class Person(var name: String, val birth: LocalDate) {
-    // If a property isn't initialised via the constructor,
-    // we define it inside the class like this:
+    // If a property isn't initialized via the constructor, we
+    // define & initialize it inside the class like this:
     var isMarried = false
 }
 

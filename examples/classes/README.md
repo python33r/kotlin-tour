@@ -19,12 +19,12 @@ validation on the values used for initialization. It has implicit getter
 and setter methods for the properties, but no other methods.
 
 `person2.kt` is a slightly more complex version of `Person` demonstrating
-how we can introduce properties that are not initialised via the constructor.
+how we can introduce properties that are not initialized via the constructor.
 
 `person3.kt` is yet another version of `Person`, this time showing how
 methods can be defined or overridden in a class.
 
-`Rectangle.kt` contains the definition of a `Rectangle` class, plus a test
+`rectangle.kt` contains the definition of a `Rectangle` class, plus a test
 program. This is more sophisticated than the `Person` class. It has an
 `init` block to validate constructor parameters. This uses the `require`
 function, which generates an `IllegalArgumentException` if the tests

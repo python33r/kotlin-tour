@@ -1,5 +1,5 @@
 import java.time.LocalDate
-import java.time.temporal.ChronoUnit
+import java.time.temporal.ChronoUnit.YEARS
 
 class Person(var name: String, val birth: LocalDate) {
     var isMarried = false
@@ -10,7 +10,7 @@ class Person(var name: String, val birth: LocalDate) {
 
     fun atLeastAge(years: Int): Boolean {
         val today = LocalDate.now()
-        val age = ChronoUnit.YEARS.between(birth, today)
+        val age = YEARS.between(birth, today)
         return age >= years
     }
 
