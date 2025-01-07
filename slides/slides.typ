@@ -41,6 +41,7 @@
 )
 
 #show raw: set text(font: "Fira Code", weight: 400)
+#show raw.where(lang: "pintora"): it => pintorita.render(it.text)
 
 #title-slide[
 = A Tour of Kotlin
@@ -151,7 +152,7 @@ To include the Kotlin runtime library:
 ])
 
 #v(0.5em)
-#info[
+#info(title: "Note")[
   This increases the size of the JAR file substantially, but it will
   then be portable to any system with a JVM...
 ]
@@ -363,8 +364,8 @@ repeat(10) {
   columns: 2,
   inset: 10pt,
   stroke: none,
-  [`Pair`], [tuple of two values],
-  [`Triple`], [tuple of three values],
+  [`Pair`], [tuple of two values#footnote[Values can be different types]<tuple>],
+  [`Triple`], [tuple of three values#footnote(<tuple>)],
   [`Array`], [fixed-sized collection of primitives or objects],
   [`List`], [ordered collection of objects],
   [`Set`], [unordered collection of unique objects],
@@ -514,8 +515,8 @@ Kotlin's *functional programming* support let us do it in one line!
 #v(.5em)
 - `sumOf()` is a method we can call on collections
 - It expects a 'selector function' that determines values to be summed
-- We provide that selector as a lambda expression
-- Collection's values are referenced via special variable `it`
+- Selector's only parameter represents a value from collection
+- If selector is a lambda, we reference the parameter implicitly as `it`
 
 #speaker-note[
   This is an example of how concise yet expressive Kotlin can be.
@@ -526,7 +527,7 @@ Kotlin's *functional programming* support let us do it in one line!
 
 == Other Examples
 
-Take a list of integers and generating a new list containing the squares
+Take a list of integers and generates a new list containing the squares
 of only the even values:
 
 #pad(left: 1.5em, no-codly[
@@ -539,8 +540,8 @@ of only the even values:
 #pause
 
 #v(.5em)
-Remove empty strings from a list and organise remaining strings into
-groups keyed by first letter:
+Remove blank strings from a list and organize remaining strings into
+groups, keyed by first letter:
 
 #pad(left: 1.5em, no-codly[
   ```
@@ -575,6 +576,8 @@ These are important, but we don't have time to look at them:
 
 Consider how we would write a small bank account class with three fields:
 ID, holder name, balance (latter being mutable)
+
+#pause
 
 This can require *more than 50 lines of Java* (constructor, getters, setter,
 `equals()`, `hashCode()`, `toString()`, etc)
@@ -616,13 +619,13 @@ class Person(var name: String, val birth: LocalDate)
 #pause
 
 - Properties are abstractions: compiler creates a hidden field, getter
-  method and setter method, which are used implicitly when we access
-  a property
+  method and setter method (if needed), which are used implicitly when we
+  access a property
 
 #pause
 
 - `Person` will be given a two-parameter constructor that initializes
-  the two properties
+  the two properties to the given values
 
 == Using The Class
 
@@ -637,7 +640,7 @@ fun main() {
     println(p.name)   // invokes getter method
     p.name = "David"  // invokes setter
 
-    p.birth = LocalDate.of(1995, 9, 23)  // compiler error
+    p.birth = LocalDate.of(1995, 8, 23)  // compiler error
 }
 ```
 
@@ -661,7 +664,7 @@ class Person(var name: String, val birth: LocalDate) {
 ```
 
 #warning[
-  Properties defined this way MUST be initialized!
+  Properties defined this way _must_ be initialized!
 ]
 
 == Adding Methods
@@ -703,6 +706,7 @@ class Person(n: String, val birth: LocalDate) {
     var name = n
         set(value) {
             require(value.isNotBlank()) { "Blank name" }
+            field = value
         }
 }
 ```
@@ -729,7 +733,8 @@ class Person(n: String, val birth: LocalDate) {
         require(n.isNotBlank()) { "Blank name" }
     }
 
-    var name = n ...
+    var name = n
+        set(value) { ... }
 }
 ```
 
@@ -757,6 +762,10 @@ class Person(n: String, val birth: LocalDate) {
 
 == Example
 
+#align(center, image("shapes.png", width: 80%))
+
+== Example
+
 ```kotlin
 typealias Coord = Pair<Double,Double>
 
@@ -776,6 +785,23 @@ class Rectangle(pos: Coord,
 
 == Abstract Classes
 
+#align(center, image("shapes2.png", width: 80%))
+
+#speaker-note[
+  Unlike Java, we can have abstract properties that are overridden in
+  subclasses.
+
+  In a `Shape` class, properties like area or perimeter have to be
+  abstract because we lack the information needed to compute their values.
+  That info is supplied in subclasses.
+
+  It makes sense for `Shape` itself to be abstract, regardless.
+]
+
+== Abstract Classes
+
+Use `abstract` keyword, as in Java:
+
 ```kotlin
 abstract class Shape(val position: Coord) {
     abstract val area: Double
@@ -786,7 +812,32 @@ class Circle(pos: Coord, val radius: Double): Shape(pos) {
 }
 ```
 
+#speaker-note[
+  This code specifies that all shapes must have an `area` property,
+  of type `Double`. The `Circle` class implements this as a computed
+  property, using the standard circle area formula of $pi r^2$.
+
+  Demo: `shapes2.kt`
+]
+
 == Interfaces
+
+Syntax almost exactly the same as Java:
+
+```kotlin
+interface Drawable {
+    fun draw()
+}
+```
+
+#info(title: "Note")[
+  Similar to inheritance, you use `:` rather than `implements` to declare
+  that a class implements an interface.
+]
+
+#speaker-note[
+  Demo: `shapes3.kt`
+]
 
 == Things We've Not Covered
 
@@ -799,7 +850,7 @@ class Circle(pos: Coord, val radius: Double): Shape(pos) {
 - Creating singletons with `object`
 
 #speaker-note[
-  We would cover some of these if we adopted Kotlin.
+  We would probably cover some of these if we adopted Kotlin.
 ]
 
 == Learning More

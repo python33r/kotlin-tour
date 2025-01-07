@@ -15,13 +15,13 @@ abstract class Shape(val position: Coord) {
 class Circle(pos: Coord, val radius: Double): Shape(pos) {
     // Need to use 'override' when defining concrete
     // implementations of perimeter & area
-    override val perimeter get() = 2.0 * Math.PI * radius
     override val area get() = Math.PI * radius * radius
+    override val perimeter get() = 2.0 * Math.PI * radius
 }
 
 class Rectangle(pos: Coord, val width: Double, val height: Double): Shape(pos) {
-    override val perimeter get() = 2.0 * (width + height)
     override val area get() = width * height
+    override val perimeter get() = 2.0 * (width + height)
 }
 
 // Test program

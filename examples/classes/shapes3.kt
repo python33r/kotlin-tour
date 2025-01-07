@@ -19,8 +19,8 @@ abstract class Shape(val position: Coord) {
 }
 
 class Circle(pos: Coord, val radius: Double): Shape(pos), Drawable {
-    override val perimeter get() = 2.0 * Math.PI * radius
     override val area get() = Math.PI * radius * radius
+    override val perimeter get() = 2.0 * Math.PI * radius
 
     override fun draw() {
         println("Drawing Circle at $position, r=$radius")
@@ -29,8 +29,8 @@ class Circle(pos: Coord, val radius: Double): Shape(pos), Drawable {
 
 class Rectangle(pos: Coord, val width: Double, val height: Double):
   Shape(pos), Drawable {
-    override val perimeter get() = 2.0 * (width + height)
     override val area get() = width * height
+    override val perimeter get() = 2.0 * (width + height)
 
     override fun draw() {
         println("Drawing Rectangle at $position, w=$width, h=$height")
