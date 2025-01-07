@@ -626,6 +626,9 @@ class Person(var name: String, val birth: LocalDate)
 
 == Using The Class
 
+// Need smaller code font for next few slides
+#show raw: set text(size: 0.9em)
+
 ```kotlin
 fun main() {
     val date = LocalDate.of(1992, 8, 23)
@@ -634,7 +637,7 @@ fun main() {
     println(p.name)   // invokes getter method
     p.name = "David"  // invokes setter
 
-    p.birth = LocalDate.of(1995, 9, 23)  // error!
+    p.birth = LocalDate.of(1995, 9, 23)  // compiler error
 }
 ```
 
@@ -654,9 +657,12 @@ within the class definition body:
 ```kotlin
 class Person(var name: String, val birth: LocalDate) {
     var isMarried = false
-    // Note: property MUST be initialized!
 }
 ```
+
+#warning[
+  Properties defined this way MUST be initialized!
+]
 
 == Adding Methods
 
@@ -696,7 +702,7 @@ empty string or blank string)?
 class Person(n: String, val birth: LocalDate) {
     var name = n
         set(value) {
-            require(value.isNotBlank()) { "Blank name!" }
+            require(value.isNotBlank()) { "Blank name" }
         }
 }
 ```
@@ -720,7 +726,7 @@ We can inject our own code into the object contruction process:
 ```kotlin
 class Person(n: String, val birth: LocalDate) {
     init {
-        require(n.isNotBlank()) { "Blank name!" }
+        require(n.isNotBlank()) { "Blank name" }
     }
 
     var name = n ...
@@ -769,6 +775,16 @@ class Rectangle(pos: Coord,
 ]
 
 == Abstract Classes
+
+```kotlin
+abstract class Shape(val position: Coord) {
+    abstract val area: Double
+}
+
+class Circle(pos: Coord, val radius: Double): Shape(pos) {
+    override val area get() = Math.PI * radius * radius
+}
+```
 
 == Interfaces
 

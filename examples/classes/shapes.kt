@@ -8,16 +8,16 @@ class Circle(pos: Coord, val radius: Double): Shape(pos) {
     // Circle inherits 'position' property from Shape
     // and adds two computed properties of its own
 
-    val perimeter = 2.0 * Math.PI * radius
-    val area = Math.PI * radius * radius
+    val perimeter get() = 2.0 * Math.PI * radius
+    val area get() = Math.PI * radius * radius
 }
 
 class Rectangle(pos: Coord, val width: Double, val height: Double): Shape(pos) {
     // Rectangle inherits 'position' property from Shape
     // and adds two computed properties of its own
 
-    val perimeter = 2.0 * (width + height)
-    val area = width * height
+    val perimeter get() = 2.0 * (width + height)
+    val area get() = width * height
 }
 
 fun main() {

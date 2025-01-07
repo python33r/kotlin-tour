@@ -2,8 +2,8 @@
 
 typealias Coord = Pair<Double,Double>
 
-// abstract implies open here - so Shape can be overridden,
-// as can the two computed properties area & perimeter
+// abstract implies open, so we can inherit from Shape
+// and override the two properties area & perimeter
 
 abstract class Shape(val position: Coord) {
     abstract val area: Double
@@ -13,13 +13,13 @@ abstract class Shape(val position: Coord) {
 class Circle(pos: Coord, val radius: Double): Shape(pos) {
     // Need to use 'override' when defining concrete
     // implementations of perimeter & area
-    override val perimeter = 2.0 * Math.PI * radius
-    override val area = Math.PI * radius * radius
+    override val perimeter get() = 2.0 * Math.PI * radius
+    override val area get() = Math.PI * radius * radius
 }
 
 class Rectangle(pos: Coord, val width: Double, val height: Double): Shape(pos) {
-    override val perimeter = 2.0 * (width + height)
-    override val area = width * height
+    override val perimeter get() = 2.0 * (width + height)
+    override val area get() = width * height
 }
 
 fun main() {
@@ -33,12 +33,12 @@ fun main() {
         Circle(2.0 to 4.0, radius=1.75),
     )
 
-    // Draw the shapes
+    // Print areas of shapes
 
     shapes.forEach {
         // Demonstration of polymorphism: this loop doesn't need to
         // know anything about which types of shape are in list
 
-        println("Shape area = ${it.area}")
+        println(it.area)
     }
 }
