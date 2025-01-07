@@ -1,6 +1,8 @@
-// Inheritance from an abstract superclass
+// Example of inheritance from an abstract superclass
 
 typealias Coord = Pair<Double,Double>
+
+fun at(x: Double, y: Double) = Coord(x, y)
 
 // abstract implies open, so we can inherit from Shape
 // and override the two properties area & perimeter
@@ -22,18 +24,20 @@ class Rectangle(pos: Coord, val width: Double, val height: Double): Shape(pos) {
     override val area get() = width * height
 }
 
+// Test program
+
 fun main() {
-    //val s = Shape(0.0 to 0.0)   // nope, Shape is now abstract!
+    //val s = Shape(at(0.0, 0.0))   // nope, Shape is now abstract!
 
     // Create a list of shapes
 
     val shapes = listOf(
-        Circle(-2.5 to 7.0, radius=12.4),
-        Rectangle(3.0 to 1.5, width=6.2, height=4.8),
-        Circle(2.0 to 4.0, radius=1.75),
+        Circle(at(-2.5, 7.0), radius=12.4),
+        Rectangle(at(3.0, 1.5), width=6.2, height=4.8),
+        Circle(at(2.0, 4.0), radius=1.75),
     )
 
-    // Print areas of shapes
+    // Print areas of shapes and total area
 
     shapes.forEach {
         // Demonstration of polymorphism: this loop doesn't need to
@@ -41,4 +45,8 @@ fun main() {
 
         println(it.area)
     }
+
+    val total = shapes.sumOf { it.area }
+
+    println("\nTotal area = $total")
 }
