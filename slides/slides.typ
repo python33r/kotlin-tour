@@ -1,7 +1,7 @@
 #import "@preview/gentle-clues:1.1.0": *
 #import "@preview/octique:0.1.0": octique
 
-#import "@preview/codly:1.1.1": *
+#import "@preview/codly:1.2.0": *
 #import "@preview/codly-languages:0.1.1": *
 #show: codly-init.with()
 
@@ -165,9 +165,12 @@ To include the Kotlin runtime library:
 
 == Program Args & String Interpolation
 
+// Need smaller code font from this point on
+#show raw.where(lang: "kotlin"): set text(size: 0.9em)
+
 #codly(highlights: (
-  (line: 0, start: 10, end: 28),
-  (line: 2, start:24, end: 33),
+  (line: 1, start: 10, end: 28),
+  (line: 3, start:24, end: 33),
 ))
 ```kotlin
 fun main(args: Array<String>) {
@@ -260,6 +263,8 @@ Very similar to Java, except
 
   #pad(left: 1.5em, `val largest = if (a > b) a else b`)
 
+- Instead of `switch`, Kotlin has the more powerful `when`
+
 == `when` Expressions
 
 ```kotlin
@@ -271,12 +276,15 @@ val grade = when (mark) {
 }
 ```
 
+#pause
+
+(`else` required to make the expression cover all possibilities---otherwise
+its value could be undefined)
+
 #speaker-note[
   Powerful feature, similar to Python's `match`.
 
   However, `when` in Kotlin can operate as a expression _or_ statement.
-
-  (In former case, it needs to be exhaustive.)
 ]
 
 == `when` as a Statement
@@ -377,7 +385,7 @@ repeat(10) {
 Kotlin provides handy 'factory functions' to create collections:
 ```kotlin
 val fruit = setOf("Apple", "Banana", "Kiwi")
-fruit.add("Orange")   // will this work?
+fruit.add("Orange")   // is this OK?
 ```
 
 #pause
@@ -392,6 +400,9 @@ Line 2 in this example won't compile!
 
 If you want mutable collections, you must be explicit:
 
+// #codly(highlights: (
+//   (line: 1, start: 13, end: 19),
+// ))
 ```kotlin
 val fruit = mutableSetOf("Apple", "Banana", "Kiwi")
 fruit.add("Orange")
@@ -399,6 +410,7 @@ fruit.add("Orange")
 
 #pause
 
+#v(.5em)
 ```kotlin
 val data = mutableListOf<Double>()
 File("data.txt").forEachLine {
@@ -475,6 +487,7 @@ fun grade(mark: Int) = when (mark) {
 
 #pause
 
+#v(.2em)
 ```kotlin
 println(grade(42))   // prints Pass
 ```
@@ -488,9 +501,11 @@ println(grade(42))   // prints Pass
 
 == Functions: Block Form
 
+We must provide an explicit return type & `return` statement:
+
 #codly(highlights: (
-  (line: 0, start: 38, end: 45),
-  (line: 5, start: 5, end: 14),
+  (line: 1, start: 38, end: 45),
+  (line: 6, start: 5, end: 14),
 ))
 ```kotlin
 fun sumSquares(numbers: List<Double>): Double {
@@ -525,7 +540,26 @@ Kotlin's *functional programming* support let us do it in one line!
   abbreviated in several ways, depending on the context.
 ]
 
-== Other Examples
+== More Explicitly...
+
+`numbers.sumOf { it * it }`
+
+is shorthand for
+
+`numbers.sumOf({ value: Int -> value * value })`
+
+#pause
+
+...which is equivalent to
+
+#no-codly[
+```
+fun square(value: Int) = value * value
+numbers.sumOf(square)
+```
+]
+
+== Other Exampless
 
 Take a list of integers and generates a new list containing the squares
 of only the even values:
@@ -572,7 +606,7 @@ These are important, but we don't have time to look at them:
 
 = Classes & OOP
 
-== Conciseness of Kotlin
+== Kotlin vs Java
 
 Consider how we would write a small bank account class with three fields:
 ID, holder name, balance (latter being mutable)
@@ -627,10 +661,24 @@ class Person(var name: String, val birth: LocalDate)
 - `Person` will be given a two-parameter constructor that initializes
   the two properties to the given values
 
-== Using The Class
+== More Explicitly...
 
-// Need smaller code font for next few slides
-#show raw: set text(size: 0.9em)
+One-liner on previous slide is shorthand for
+
+```kotlin
+class Person constructor(_name: String, _birth: LocalDate) {
+    var name = _name
+    val birth = _birth
+}
+```
+
+#pause
+
+#question[
+  Will Kotlin's conciseness be confusing for students?
+]
+
+== Using The Class
 
 ```kotlin
 fun main() {
@@ -652,10 +700,13 @@ fun main() {
   is that these methods can be overridden (see later).
 ]
 
-== Adding Properties
+== Defining Properties
 
-Properties that are not initialized via the constructor are introduced
-within the class definition body:
+- We can mix property definitions, putting some in the class header and
+  others within the body of the class
+
+- Properties defined in the body must always be initialized---to a default
+  value if there is no corresponding constructor parameter
 
 ```kotlin
 class Person(var name: String, val birth: LocalDate) {
@@ -663,11 +714,7 @@ class Person(var name: String, val birth: LocalDate) {
 }
 ```
 
-#warning[
-  Properties defined this way _must_ be initialized!
-]
-
-== Adding Methods
+== Defining Methods
 
 ```kotlin
 class Person(var name: String, val birth: LocalDate) {
@@ -696,14 +743,31 @@ class Person(var name: String, val birth: LocalDate) {
 }
 ```
 
-== Overriding Setters
+#speaker-note[
+  Compiler is smart enough to figure out that there is no need to create
+  a backing field to store the age of a person.
+]
 
-How do we stop someone giving a `Person` an invalid name (e.g., an
-empty string or blank string)?
+== Example of Use
 
 ```kotlin
-class Person(n: String, val birth: LocalDate) {
-    var name = n
+fun main() {
+    val date = LocalDate.of(1992, 8, 23)
+    val p = Person("Joe", birth=date)
+
+    println(p.name)   // accesses a field
+    println(p.age)    // generates value by computation
+}
+```
+
+== Overriding Setters
+
+How do we stop someone assigning an invalid name to a `Person`? \
+(e.g., an empty string or blank string)
+
+```kotlin
+class Person(_name: String, val birth: LocalDate) {
+    var name = _name
         set(value) {
             require(value.isNotBlank()) { "Blank name" }
             field = value
@@ -728,20 +792,23 @@ class Person(n: String, val birth: LocalDate) {
 
 We can inject our own code into the object contruction process:
 ```kotlin
-class Person(n: String, val birth: LocalDate) {
+class Person(_name: String, val birth: LocalDate) {
     init {
-        require(n.isNotBlank()) { "Blank name" }
+        require(_name.isNotBlank()) { "Blank name" }
     }
 
-    var name = n
+    var name = _name
         set(value) { ... }
 }
 ```
 
 #speaker-note[
-  Again, not very elegant!
+  Now we've completely prevented use of a blank/empty string as a person's
+  name, but the solution is not very elegant.
 
-  How would our students take to this?
+  How would our students take to this? Would they find it confusing?
+
+  Let's look at another example...
 
   Demo: `rectangle.kt`
 ]
@@ -822,7 +889,11 @@ class Circle(pos: Coord, val radius: Double): Shape(pos) {
 
 == Interfaces
 
-Syntax almost exactly the same as Java:
+#align(center, image("shapes3.png", width: 85%))
+
+== Defining an Interface
+
+Syntax is almost exactly the same as Java:
 
 ```kotlin
 interface Drawable {
@@ -830,12 +901,24 @@ interface Drawable {
 }
 ```
 
-#info(title: "Note")[
-  Similar to inheritance, you use `:` rather than `implements` to declare
-  that a class implements an interface.
-]
+== Using an Interface
+
+```kotlin
+class Circle(pos: Coord, val radius: Double):
+  Shape(pos), Drawable {
+
+    override val area get() = Math.PI * radius * radius
+
+    override fun draw() {
+        // draw the circle here
+    }
+}
+```
 
 #speaker-note[
+  In Java you use the `extends` and `implements` keywords, but in Kotlin
+  you just list the superclass and any interfaces after the `:`.
+
   Demo: `shapes3.kt`
 ]
 
@@ -855,4 +938,11 @@ interface Drawable {
 
 == Learning More
 
-- #link("https://kotlinlang.org/docs/kotlin-tour-welcome.html")[JetBrains Kotlin Tour]
+- #link("https://kotlinlang.org/")[Official website]
+  - The official #link("https://kotlinlang.org/docs/kotlin-tour-welcome.html")[Kotlin Tour],
+    with interactive examples
+  - #link("https://play.kotlinlang.org/")[Playground] -- run Kotlin in your browser
+- Bruce Eckel & Svetlana Isakova, #link("https://www.atomickotlin.com")[_Atomic Kotlin_]
+- Dave Leeds, #link("https://typealias.com/start/")[_Kotlin: An Illustrated Guide_]
+- Venkat Subramaniam, #link("https://pragprog.com/titles/vskotlin/programming-kotlin/")[_Programming Kotlin_]
+- Dawn Griffiths & David Griffiths, _Head-First Kotlin_
