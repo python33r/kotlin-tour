@@ -802,6 +802,13 @@ class Person(_name: String, val birth: LocalDate) {
 }
 ```
 
+#place(
+  bottom + right,
+  dx: -.5em,
+  dy: -2em,
+  text(size:1.5em, emoji.face.teeth),
+)
+
 #speaker-note[
   Now we've completely prevented use of a blank/empty string as a person's
   name, but the solution is not very elegant.
