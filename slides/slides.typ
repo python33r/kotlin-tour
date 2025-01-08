@@ -546,7 +546,7 @@ Kotlin's *functional programming* support let us do it in one line!
 
 is shorthand for
 
-`numbers.sumOf({ value: Int -> value * value })`
+`numbers.sumOf({ value: Double -> value * value })`
 
 #pause
 
@@ -554,7 +554,7 @@ is shorthand for
 
 #no-codly[
 ```
-fun square(value: Int) = value * value
+fun square(value: Double) = value * value
 numbers.sumOf(square)
 ```
 ]
