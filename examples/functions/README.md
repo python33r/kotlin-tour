@@ -16,5 +16,3 @@ command line.
 `vararg.kts` demonstrates the use of `vararg` in function parameter lists.
 
 `lambda.kts` demonstrates various practical uses of lambda functions.
-
-`with.kts` shows how the `with` scope function can be used.
