@@ -2,7 +2,7 @@
 #import "@preview/octique:0.1.0": octique
 
 #import "@preview/codly:1.2.0": *
-#import "@preview/codly-languages:0.1.1": *
+#import "@preview/codly-languages:0.1.4": *
 #show: codly-init.with()
 
 #import "@preview/touying:0.5.5": *
@@ -30,6 +30,7 @@
     },
     horizontal-line-to-pagebreak: false,
     //show-notes-on-second-screen: right,
+    //handout: true,
   ),
 )
 
@@ -420,12 +421,12 @@ println(data.average())
 ```
 
 #speaker-note[
-  Note use of `val` in both examples---OK since list isn't being reassigned
-  even though it is changing.
-
   Second example shows just one of several ways to read lines of text from
   a file. `File` is the standard class from `java.io` package and
   `forEachLine` is an extension function plugged into the class by Kotlin.
+
+  `forEachLine` expects a lambda function, specifying what we do with each
+  line (in this case, parsing to a `Double` and adding to a list).
   
   Note also how easy it is to convert a string to a number, or compute the
   average of a collection of values.
@@ -559,9 +560,14 @@ numbers.sumOf(square)
 ```
 ]
 
-== Other Exampless
+#speaker-note[
+  Version with a named function is perhaps clearer, particularly to
+  those new to Kotlin, but it is considerably more verbose.
+]
 
-Take a list of integers and generates a new list containing the squares
+== Other Examples
+
+Take a list of integers and generate a new list containing the squares
 of only the even values:
 
 #pad(left: 1.5em, no-codly[
@@ -628,8 +634,8 @@ This can require *more than 50 lines of Java* (constructor, getters, setter,
 ])
 
 #speaker-note[
-  This conciseness is one of the big reasons why Kotlin has attracted so
-  much attention from Java programmers.
+  This conciseness is one of the big reasons why so many Java programmers
+  are enthused by Kotlin.
 
   This is a *data class*. Compiler does extra work for data classes,
   generating `equals()`, `hashCode()` and `toString()` methods for us.
@@ -675,7 +681,7 @@ class Person constructor(_name: String, _birth: LocalDate) {
 #pause
 
 #question[
-  Will Kotlin's conciseness be confusing for students?
+  Will this conciseness be confusing for students?
 ]
 
 == Using The Class
@@ -907,6 +913,10 @@ interface Drawable {
     fun draw()
 }
 ```
+
+- You can implement methods in an interface
+- You can give it computed properties
+- Like Java, you cannot do anything that requires stored state
 
 == Using an Interface
 
