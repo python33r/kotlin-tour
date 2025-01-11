@@ -5,6 +5,8 @@
 #import "@preview/codly-languages:0.1.4": *
 #show: codly-init.with()
 
+#let nc(left: 1em, txt) = pad(left: left, no-codly(txt))
+
 #import "@preview/touying:0.5.5": *
 #import themes.simple: *
 #show: simple-theme.with(
@@ -42,7 +44,6 @@
 )
 
 #show raw: set text(font: "Fira Code", weight: 400)
-#show raw.where(lang: "pintora"): it => pintorita.render(it.text)
 
 #title-slide[
 = A Tour of Kotlin
@@ -107,23 +108,23 @@ How do we compile/run this?
 
 For this simple case:
 
-#pad(left: 1em, no-codly[
+#nc[
   ```
   kotlinc hello.kt    # generates HelloKt.class
   kotlin HelloKt
   ```
-])
+]
 
 #pause
 
 Multiple `.class` files can be bundled:
 
-#pad(left: 1em, no-codly[
+#nc[
   ```
   kotlinc -d app.jar main.kt file2.kt file3.kt...
   kotlin -cp app.jar MainKt
   ```
-])
+]
 
 #v(.3em)
 (or let your IDE handle it... #emoji.face.wink)
@@ -144,13 +145,13 @@ Multiple `.class` files can be bundled:
 
 To include the Kotlin runtime library:
 
-#pad(left: 1em, no-codly[
+#nc[
   ```
   kotlinc -include-runtime -d app.jar main.kt file2.kt...
   kotlin app.jar
   java -jar app.jar   # also works!
   ```
-])
+]
 
 #v(0.5em)
 #info(title: "Note")[
@@ -201,17 +202,17 @@ fun main(args: Array<String>) {
 
 - Type can be specified explicitly:
 
-  #pad(left: 1.5em, no-codly[```
+  #nc(left: 1.5em)[```
   val name: String = "Nick"
   var total: Int = 0
-  ```])
+  ```]
 
 - ...or we can exploit *type inference* (preferred):
 
-  #pad(left: 1.5em, no-codly[```
+  #nc(left: 1.5em)[```
   val name = "Nick"
   var total = 0
-  ```])
+  ```]
 
 == `val` or `var` ?
 
@@ -456,7 +457,7 @@ println(data.average())
 
 == Iteration Patterns
 
-#no-codly[
+#nc[
   ```
   for (item in array) {...}
   for (item in list) {...}
@@ -570,12 +571,12 @@ numbers.sumOf(square)
 Take a list of integers and generate a new list containing the squares
 of only the even values:
 
-#pad(left: 1.5em, no-codly[
+#nc(left: 1.5em)[
   ```
   numbers.filter { it % 2 == 0 }
          .map { it * it }
   ```
-])
+]
 
 #pause
 
@@ -583,12 +584,12 @@ of only the even values:
 Remove blank strings from a list and organize remaining strings into
 groups, keyed by first letter:
 
-#pad(left: 1.5em, no-codly[
+#nc(left: 1.5em)[
   ```
   names.filter { it.isNotBlank() }
        .groupBy { it.first() }
   ```
-])
+]
 
 #speaker-note[
   Second example returns a map of chars onto lists of strings.
@@ -626,12 +627,12 @@ This can require *more than 50 lines of Java* (constructor, getters, setter,
 
 ...or *a single line of Kotlin*:
 
-#pad(left: 1.5em, no-codly[
+#nc(left: 1.5em)[
   ```
   data class Account(val id: Int, val name: String,
     var balance: Int)
   ```
-])
+]
 
 #speaker-note[
   This conciseness is one of the big reasons why so many Java programmers
@@ -956,10 +957,12 @@ class Circle(pos: Coord, val radius: Double):
 == Learning More
 
 - #link("https://kotlinlang.org/")[Official website]
-  - The official #link("https://kotlinlang.org/docs/kotlin-tour-welcome.html")[Kotlin Tour],
+  - The official
+    #link("https://kotlinlang.org/docs/kotlin-tour-welcome.html")[Kotlin Tour],
     with interactive examples
-  - #link("https://play.kotlinlang.org/")[Playground] -- run Kotlin in your browser
+  - #link("https://play.kotlinlang.org/")[Playground]: run Kotlin in your browser
 - Bruce Eckel & Svetlana Isakova, #link("https://www.atomickotlin.com")[_Atomic Kotlin_]
 - Dave Leeds, #link("https://typealias.com/start/")[_Kotlin: An Illustrated Guide_]
-- Venkat Subramaniam, #link("https://pragprog.com/titles/vskotlin/programming-kotlin/")[_Programming Kotlin_]
+- Venkat Subramaniam,
+  #link("https://pragprog.com/titles/vskotlin/programming-kotlin/")[_Programming Kotlin_]
 - Dawn Griffiths & David Griffiths, _Head-First Kotlin_
