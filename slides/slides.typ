@@ -2,7 +2,7 @@
 #import "@preview/octique:0.1.0": octique
 
 #import "@preview/codly:1.2.0": *
-#import "@preview/codly-languages:0.1.4": *
+#import "@preview/codly-languages:0.1.5": *
 #show: codly-init.with()
 
 #let nc(left: 1em, txt) = pad(left: left, no-codly(txt))
@@ -965,4 +965,5 @@ class Circle(pos: Coord, val radius: Double):
 - Dave Leeds, #link("https://typealias.com/start/")[_Kotlin: An Illustrated Guide_]
 - Venkat Subramaniam,
   #link("https://pragprog.com/titles/vskotlin/programming-kotlin/")[_Programming Kotlin_]
-- Dawn Griffiths & David Griffiths, _Head-First Kotlin_
+- Dawn Griffiths & David Griffiths,
+  #link("https://www.oreilly.com/library/view/head-first-kotlin/9781491996683/")[_Head-First Kotlin_]
