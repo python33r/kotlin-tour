@@ -523,7 +523,7 @@ fun sumSquares(numbers: List<Double>): Double {
 
 We don't really need to write a `sumSquares` function.
 
-Kotlin's *functional programming* support let us do it in one line!
+Kotlin's *functional programming* support lets us do it in one line!
 
 #pad(left: 1.5em)[`numbers.sumOf { it * it }`]
 
