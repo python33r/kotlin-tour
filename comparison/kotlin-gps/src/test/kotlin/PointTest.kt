@@ -61,14 +61,14 @@ class PointTest: StringSpec({
         }
     }
 
-    "Correct distance hetween opposing points on equator" {
+    "Correct distance hetween points on equator" {
         val p1 = Point(time, 0.0, 0.0, 0.0)
         val p2 = Point(time, 180.0, 0.0, 0.0)
         val p3 = Point(time, -180.0, 0.0, 0.0)
 
-        p1.distanceTo(p1) shouldBe zero
-        p1.distanceTo(p2) shouldBe halfCircumference
-        p1.distanceTo(p3) shouldBe halfCircumference
-        p2.distanceTo(p3) shouldBe zero
+        withClue("To itself") { p1.distanceTo(p1) shouldBe zero }
+        withClue("Opposing point (+180°)") { p1.distanceTo(p2) shouldBe halfCircumference }
+        withClue("Opposing point (-180°)") { p1.distanceTo(p3) shouldBe halfCircumference }
+        withClue("+180° to -180° (same point)") { p2.distanceTo(p3) shouldBe zero }
     }
 })

@@ -1,8 +1,10 @@
 import kotlin.system.exitProcess
 
+fun printf(fmt: String, vararg args: Any) = print(String.format(fmt, *args))
+
 fun main(args: Array<String>) {
     if (args.size != 1) {
-        println("Error: filename required")
+        println("Error: filename required on command line")
         exitProcess(1)
     }
 
@@ -13,8 +15,8 @@ fun main(args: Array<String>) {
             println("Highest point is ${highestPoint()}")
 
             val distKm = totalDistance() / 1000.0
-            System.out.printf("Total distance travelled = %.3f km\n", distKm)
-            System.out.printf("Average speed = %.3f m/s\n", averageSpeed())
+            printf("Total distance travelled = %.3f km\n", distKm)
+            printf("Average speed = %.3f m/s\n", averageSpeed())
         }
     }
     catch (error: Exception) {
