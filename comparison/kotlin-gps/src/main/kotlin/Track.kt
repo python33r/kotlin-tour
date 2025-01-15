@@ -36,25 +36,27 @@ class Track() {
 
     fun add(p: Point) = points.add(p)
 
-    fun lowestPoint() = points.minByOrNull { it.elevation }
+    val lowestPoint get() = points.minByOrNull { it.elevation }
 
-    fun highestPoint() = points.maxByOrNull { it.elevation }
+    val highestPoint get() = points.maxByOrNull { it.elevation }
 
-    fun totalDistance(): Double {
-        var distance = 0.0
-        if (points.size > 1) {
-            for (i in 1..points.lastIndex) {
-                distance += points[i].distanceTo(points[i - 1])
+    val totalDistance: Double
+        get() {
+            var distance = 0.0
+            if (points.size > 1) {
+                for (i in 1..points.lastIndex) {
+                    distance += points[i].distanceTo(points[i - 1])
+                }
             }
+            return distance
         }
-        return distance
-    }
 
-    fun averageSpeed(): Double? {
-        if (points.size > 1) {
-            val time = ChronoUnit.SECONDS.between(points.first().time, points.last().time)
-            return totalDistance() / time
+    val averageSpeed: Double?
+        get() {
+            if (points.size > 1) {
+                val time = ChronoUnit.SECONDS.between(points.first().time, points.last().time)
+                return totalDistance / time
+            }
+            return null
         }
-        return null
-    }
 }

@@ -5,13 +5,22 @@ Side-by-side comparison of Java and Kotlin code.
 `java-gps` contains the solution to an old piece of COMP1721 coursework,
 an application to analysis GPS data.
 
-`kotlin-gps` contains a very similar solution in Kotlin. This is a straight
-conversion, more or less, but with one significant difference. Whereas
-the Java solution uses a custom exception class to signal errors in three
-of the methods, the Kotlin solution dispenses with this class, instead
-returning null from those methods. It's reasonable to do this because
-Kotlin provides very convenient ways of handling nulls - see `TrackInfo.kt`
-for examples.
+`kotlin-gps` contains a similar solution in Kotlin. This is a mostly straight
+conversion, but with two significant differences.
+
+First, the Kotlin solution implements lowest point, highest point, total
+distance and average speed as **computed properties**, rather than as explicit
+methods.
+
+Second (and relatedly), the Kotlin solution allows lowest point, highest
+point and average speed to be `null` when sensible values cannot be
+determined, rather than following the Java solution's approach of throwing
+an instance of a custom exception class. This is more in keeping with our
+implementation of these quantities as properties, and it doesn't cause
+any great inconvenience in the main program because Kotlin provides
+elegant ways of handling null values - see `TrackInfo.kt` for examples.
+
+## Unit Tests
 
 It is also worth comparing the unit tests in `java-gps/src/test/java` and
 `kotlin-gps/src/test/kotlin`. The former are written using JUnit 5 and

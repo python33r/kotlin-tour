@@ -55,45 +55,43 @@ class TrackTest: StringSpec({
     }
 
     "Lowest point found correctly" {
-        val lowest = trackFourPoints.lowestPoint()
-        lowest?.elevation shouldBe (68.1 plusOrMinus tolerance)
+        trackFourPoints.lowestPoint?.elevation shouldBe (68.1 plusOrMinus tolerance)
     }
 
     "No lowest point for an empty Track" {
-        trackNoPoints.lowestPoint() shouldBe null
+        trackNoPoints.lowestPoint shouldBe null
     }
 
     "Highest point found correctly" {
-        val highest = trackFourPoints.highestPoint()
-        highest?.elevation shouldBe (72.5 plusOrMinus tolerance)
+        trackFourPoints.highestPoint?.elevation shouldBe (72.5 plusOrMinus tolerance)
     }
 
     "No highest point for an empty Track" {
-        trackNoPoints.highestPoint() shouldBe null
+        trackNoPoints.highestPoint shouldBe null
     }
 
     "Total distance calculated correctly" {
-        trackFourPoints.totalDistance() shouldBe (278.53495 plusOrMinus tolerance)
+        trackFourPoints.totalDistance shouldBe (278.53495 plusOrMinus tolerance)
     }
 
     "Distance is 0 for an empty Track" {
-        trackNoPoints.totalDistance() shouldBe zero
+        trackNoPoints.totalDistance shouldBe zero
     }
 
     "Distance is 0 for a single-point Track" {
-        trackOnePoint.totalDistance() shouldBe zero
+        trackOnePoint.totalDistance shouldBe zero
     }
 
     "Average speed calculated correctly" {
-        trackFourPoints.averageSpeed() shouldBe (1.61939 plusOrMinus tolerance)
+        trackFourPoints.averageSpeed shouldBe (1.61939 plusOrMinus tolerance)
     }
 
     "No average speed for an empty Track" {
-        trackNoPoints.averageSpeed() shouldBe null
+        trackNoPoints.averageSpeed shouldBe null
     }
 
     "No average speed for a one-point Track" {
-        trackOnePoint.averageSpeed() shouldBe null
+        trackOnePoint.averageSpeed shouldBe null
     }
 
     "Track created from a file correctly" {
