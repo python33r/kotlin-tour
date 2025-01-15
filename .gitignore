@@ -1,6 +1,13 @@
+.idea/
+.kotlin/
+.gradle/
+.vscode/
+build/
+META-INF/
+
 *~
 *.pdf
 *.class
 *.py[co]
-META-INF/
+
 .DS_Store
