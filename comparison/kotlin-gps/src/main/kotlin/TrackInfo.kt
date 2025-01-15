@@ -10,13 +10,13 @@ fun main(args: Array<String>) {
 
     try {
         with (Track(args[0])) {
-            println("$size points in track")
-            println("Lowest point is ${lowestPoint()}")
-            println("Highest point is ${highestPoint()}")
+            println("Points in track: $size")
+            lowestPoint()?.let { println("Lowest point is $it") }
+            highestPoint()?.let { println("Highest point is $it") }
 
             val distKm = totalDistance() / 1000.0
             printf("Total distance travelled = %.3f km\n", distKm)
-            printf("Average speed = %.3f m/s\n", averageSpeed())
+            averageSpeed()?.let { printf("Average speed = %.1f m/s\n", it) }
         }
     }
     catch (error: Exception) {

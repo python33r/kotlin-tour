@@ -9,7 +9,7 @@ public class TrackInfo {
 
     try {
       Track track = new Track(args[0]);
-      out.printf("%d points in track\n", track.size());
+      out.printf("Points in track: %d\n", track.size());
 
       Point lowest = track.lowestPoint();
       Point highest = track.highestPoint();
@@ -20,7 +20,7 @@ public class TrackInfo {
       out.printf("Total distance travelled = %.3f km\n", distKm);
 
       double avgSpeed = track.averageSpeed();
-      out.printf("Average speed = %.3f m/s\n", avgSpeed);
+      out.printf("Average speed = %.1f m/s\n", avgSpeed);
     }
     catch (Exception error) {
       out.println("Error: " + error.getMessage());

@@ -5,8 +5,6 @@ import java.time.temporal.ChronoUnit
 
 const val NUM_CSV_COLUMNS = 4
 
-class DataException(message: String): RuntimeException(message)
-
 class Track() {
     private val points = mutableListOf<Point>()
 
@@ -38,15 +36,9 @@ class Track() {
 
     fun add(p: Point) = points.add(p)
 
-    fun lowestPoint(): Point {
-        requireMinSize(1)
-        return points.minBy { it.elevation }
-    }
+    fun lowestPoint() = points.minByOrNull { it.elevation }
 
-    fun highestPoint(): Point {
-        requireMinSize(1)
-        return points.maxBy { it.elevation }
-    }
+    fun highestPoint() = points.maxByOrNull { it.elevation }
 
     fun totalDistance(): Double {
         var distance = 0.0
@@ -58,15 +50,11 @@ class Track() {
         return distance
     }
 
-    fun averageSpeed(): Double {
-        requireMinSize(2)
-        val time = ChronoUnit.SECONDS.between(points.first().time, points.last().time)
-        return totalDistance() / time
-    }
-
-    private fun requireMinSize(n: Int) {
-        if (points.size < n) {
-            throw DataException("Insufficient data (min number of points = $n)")
+    fun averageSpeed(): Double? {
+        if (points.size > 1) {
+            val time = ChronoUnit.SECONDS.between(points.first().time, points.last().time)
+            return totalDistance() / time
         }
+        return null
     }
 }
