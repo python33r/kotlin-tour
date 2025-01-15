@@ -103,7 +103,7 @@ public class TrackTest {
   @Test
   @DisplayName("Exception if data file has fewer than 4 columns")
   public void readMissingData() {
-    assertThrows(DataException.class, () -> new Track("data/bad.csv"));
+    assertThrows(IOException.class, () -> new Track("data/bad.csv"));
   }
 
   @Test

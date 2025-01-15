@@ -4,6 +4,10 @@ import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
 
 const val NUM_CSV_COLUMNS = 4
+const val TIME_FIELD = 0
+const val LON_FIELD = 1
+const val LAT_FIELD = 2
+const val ELEV_FIELD = 3
 
 class Track() {
     private val points = mutableListOf<Point>()
@@ -16,16 +20,17 @@ class Track() {
         File(filename).useLines {
             points.clear()
             it.drop(1).forEach { line ->
-                val parts = line.split(",")
-                if (parts.size != NUM_CSV_COLUMNS) {
-                    throw IOException("Invalid file format")
+                with (line.split(",")) {
+                    if (size != NUM_CSV_COLUMNS) {
+                        throw IOException("Invalid file format")
+                    }
+                    points.add(Point(
+                        time = ZonedDateTime.parse(get(TIME_FIELD)),
+                        longitude = get(LON_FIELD).toDouble(),
+                        latitude = get(LAT_FIELD).toDouble(),
+                        elevation = get(ELEV_FIELD).toDouble()
+                    ))
                 }
-
-                val time = ZonedDateTime.parse(parts[0])
-                val lon = parts[1].toDouble()
-                val lat = parts[2].toDouble()
-                val elev = parts[3].toDouble()
-                points.add(Point(time, lon, lat, elev))
             }
         }
     }

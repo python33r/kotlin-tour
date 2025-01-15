@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 public class Track {
   private static final int NUM_CSV_COLUMNS = 4;
+  private static final int TIME_FIELD = 0;
+  private static final int LON_FIELD = 1;
+  private static final int LAT_FIELD = 2;
+  private static final int ELEV_FIELD = 3;
+
   private final List<Point> points;
 
   public Track() {
@@ -36,15 +41,15 @@ public class Track {
 
         String[] parts = line.split(",");
         if (parts.length != NUM_CSV_COLUMNS) {
-          throw new DataException("invalid file format");
+          throw new IOException("invalid file format");
         }
 
-        ZonedDateTime time = ZonedDateTime.parse(parts[0]);
-        double lon = Double.parseDouble(parts[1]);
-        double lat = Double.parseDouble(parts[2]);
-        double elev = Double.parseDouble(parts[3]);
-
-        points.add(new Point(time, lon, lat, elev));
+        points.add(new Point(
+          ZonedDateTime.parse(parts[TIME_FIELD]),
+          Double.parseDouble(parts[LON_FIELD]),
+          Double.parseDouble(parts[LAT_FIELD]),
+          Double.parseDouble(parts[ELEV_FIELD])
+        ));
       }
     }
   }
