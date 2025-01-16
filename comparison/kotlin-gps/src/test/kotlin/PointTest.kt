@@ -16,10 +16,10 @@ class PointTest: StringSpec({
     val halfCircumference = (PI * Point.MEAN_EARTH_RADIUS) plusOrMinus tolerance
 
     "Properties have expected values" {
-        point.time shouldBe time
-        point.longitude shouldBe (1.5 plusOrMinus tolerance)
-        point.latitude shouldBe (50.0 plusOrMinus tolerance)
-        point.elevation shouldBe (25.0 plusOrMinus tolerance)
+        withClue("Time") { point.time shouldBe time }
+        withClue("Longitude") { point.longitude shouldBe (1.5 plusOrMinus tolerance) }
+        withClue("Latitude") { point.latitude shouldBe (50.0 plusOrMinus tolerance) }
+        withClue("Elevation") { point.elevation shouldBe (25.0 plusOrMinus tolerance) }
     }
 
     "Exception if longitude < -180 degrees" {
