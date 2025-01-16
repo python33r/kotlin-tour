@@ -45,16 +45,9 @@ class Track() {
 
     val highestPoint get() = points.maxByOrNull { it.elevation }
 
-    val totalDistance: Double
-        get() {
-            var distance = 0.0
-            if (points.size > 1) {
-                for (i in 1..points.lastIndex) {
-                    distance += points[i].distanceTo(points[i - 1])
-                }
-            }
-            return distance
-        }
+    val totalDistance get() = points.asSequence()
+                                    .windowed(2)
+                                    .map { it[0].distanceTo(it[1]) }.sum()
 
     val averageSpeed: Double?
         get() {
