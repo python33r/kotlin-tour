@@ -83,9 +83,7 @@ println("Hello World!")
 (Technically, this is _KotlinScript_ rather than Kotlin...)
 
 #speaker-note[
-  Demo: `kotlin hello.kts`
-
-  (Comment on 'slowness'?)
+  We would run this with `kotlin hello.kts`
 ]
 
 == Simplest Program, Take 2
@@ -159,12 +157,6 @@ To include the Kotlin runtime library:
   then be portable to any system with a JVM...
 ]
 
-#speaker-note[
-  Frustratingly, you need to bundle the KSL with your code if you want to
-  run with a simple `kotlin app.jar` command, even though the `kotlin`
-  application is perfectly capable of locating the KSL itself...
-]
-
 == Program Args & String Interpolation
 
 // Need smaller code font from this point on
@@ -194,6 +186,30 @@ fun main(args: Array<String>) {
   String interp is similar to Python f-strings, except that the braces are
   not required when just using a variable's name, but the `$` prefix is
   always required.
+]
+
+== Basic Data Types
+
+- `Char`, `Int`, `Long`, `Float`, `Double`, etc
+  - Feel like classes, have methods that we can call
+  - Will be represented with primitive types on the JVM
+
+#pause
+
+- Unlike Java, Kotlin has unsigned integers (`UInt`, `UShort`, etc)
+
+#pause
+
+- Kotlin expands Java types using *extension functions*
+  - You can write these yourself---e.g., to add your own functionality to
+    the `String` class!
+
+#speaker-note[
+  Unlike Java, there is no explicit distinction drawn between types
+  that have primitive representations and types that are classes.
+
+  Using extension functions is a nicer solution than subclassing a built-in
+  type just to add a tiny bit of functionality to it.
 ]
 
 == Variables
@@ -233,27 +249,6 @@ fun main(args: Array<String>) {
   that change the values of fields.
 
   Think of `val` as equivalent to using `final` in Java.
-]
-
-== Built-in Data Types
-
-Very similar to Java, except
-- No primitives (but see arrays later...)
-
-- `Int`, `Char` rather than `Integer`, `Character`
-
-- Kotlin has unsigned versions of integer types
-
-- Kotlin expands Java types using *extension functions*
-  - You can write these yourself---e.g., to add your own functionality to
-    the `String` class!
-
-#speaker-note[
-  Although you don't manipulate primitives in Kotlin, compiler can optimize
-  away the use of objects when generating the Java bytecode.
-
-  Using extension functions is a nicer solution than subclassing a built-in
-  type just to add a tiny bit of functionality to it.
 ]
 
 == Conditionals
@@ -395,7 +390,7 @@ fruit.add("Orange")   // is this OK?
 #error[
 Line 2 in this example won't compile!
 
-`arrayOf`, `listOf`, `setOf`, etc, return *immutable collections*
+`listOf`, `setOf`, `mapOf` return *immutable collections*
 ]
 
 == Mutability
