@@ -1,7 +1,7 @@
 import java.io.File
 import java.io.IOException
 import java.time.ZonedDateTime
-import java.time.temporal.ChronoUnit
+import java.time.temporal.ChronoUnit.SECONDS
 
 const val NUM_CSV_COLUMNS = 4
 const val TIME_FIELD = 0
@@ -46,15 +46,12 @@ class Track() {
     val highestPoint get() = points.maxByOrNull { it.elevation }
 
     val totalDistance get() = points.asSequence()
-                                    .windowed(2)
-                                    .map { it[0].distanceTo(it[1]) }.sum()
+        .windowed(2).map { it[0].distanceTo(it[1]) }.sum()
 
-    val averageSpeed: Double?
-        get() {
-            if (points.size > 1) {
-                val time = ChronoUnit.SECONDS.between(points.first().time, points.last().time)
-                return totalDistance / time
-            }
-            return null
-        }
+    val averageSpeed get() = if (points.size > 1) {
+        totalDistance / SECONDS.between(points.first().time, points.last().time)
+    }
+    else {
+        null
+    }
 }
