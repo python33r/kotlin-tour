@@ -5,8 +5,6 @@
 #import "@preview/codly-languages:0.1.5": *
 #show: codly-init.with()
 
-#let nc(left: 1em, txt) = pad(left: left, no-codly(txt))
-
 #import "@preview/touying:0.5.5": *
 #import themes.simple: *
 #show: simple-theme.with(
@@ -45,6 +43,10 @@
 
 #show raw: set text(font: "Fira Code", weight: 400)
 
+#let nc(left: 1em, txt) = pad(left: left, no-codly(txt))
+
+//=========================================================================//
+
 #title-slide[
 = A Tour of Kotlin
 #v(1em)
@@ -68,9 +70,11 @@ Naturally, we will miss a _lot_ of stuff out...
   #link("https://github.com/python33r/kotlin-tour.git")
 ]
 
+//-------------------------------------------------------------------------//
+
 = Kotlin Basics
 
-== Simplest Program
+== Hello World
 
 Similar to Python (and run a similar way):
 
@@ -86,7 +90,7 @@ println("Hello World!")
   We would run this with `kotlin hello.kts`
 ]
 
-== Simplest Program, Take 2
+== Hello World, Take 2
 
 ```kotlin
 fun main() {
@@ -125,7 +129,7 @@ Multiple `.class` files can be bundled:
 ]
 
 #v(.3em)
-(or let your IDE handle it... #emoji.face.wink)
+(or let your IDE / build tool handle it... #emoji.face.wink)
 
 #speaker-note[
   Kotlin's JVM compiler generates Java bytecode, and JVM requires that
@@ -157,7 +161,11 @@ To include the Kotlin runtime library:
   then be portable to any system with a JVM...
 ]
 
-== Program Args & String Interpolation
+== Hello Person or World
+
+Using program arguments, `if` and string interpolation:
+
+#pause
 
 // Need smaller code font from this point on
 #show raw.where(lang: "kotlin"): set text(size: 0.9em)
@@ -181,7 +189,7 @@ fun main(args: Array<String>) {
   Function args are declared name first, followed by a colon, followed
   by the type.
 
-  Can also see here that conditionals look very Java-like.
+  Can also see that conditional structures look very Java-like.
 
   String interp is similar to Python f-strings, except that the braces are
   not required when just using a variable's name, but the `$` prefix is
@@ -525,10 +533,10 @@ Kotlin's *functional programming* support lets us do it in one line!
 #pause
 
 #v(.5em)
-- `sumOf()` is a method we can call on collections
+- `sumOf()` is a method of numeric collections
 - It expects a 'selector function' that determines values to be summed
 - Selector's only parameter represents a value from collection
-- If selector is a lambda, we reference the parameter implicitly as `it`
+- If selector is a lambda, that parameter has the implicit name `it`
 
 #speaker-note[
   This is an example of how concise yet expressive Kotlin can be.
@@ -606,6 +614,8 @@ These are important, but we don't have time to look at them:
   - `also`, `apply`, `let`, `run`, `with`
 - Extension functions
 
+//-------------------------------------------------------------------------//
+
 = Classes & OOP
 
 == Kotlin vs Java
@@ -660,8 +670,8 @@ class Person(var name: String, val birth: LocalDate)
 
 #pause
 
-- `Person` will be given a two-parameter constructor that initializes
-  the two properties to the given values
+- `Person` is given a two-parameter constructor that initializes the two
+  properties to the given values
 
 == More Explicitly...
 
@@ -792,7 +802,7 @@ class Person(_name: String, val birth: LocalDate) {
 
 == Initializer Blocks
 
-We can inject our own code into the object contruction process:
+We can inject our own code into the construction process:
 ```kotlin
 class Person(_name: String, val birth: LocalDate) {
     init {
@@ -856,7 +866,7 @@ class Rectangle(pos: Coord,
 #speaker-note[
   Worth stressing again the conciseness of this. Four lines of Kotlin give
   us a hierarchy of one superclass and two subclasses, each with fields,
-  constructor, getters and setters.
+  constructor and getter methods.
 ]
 
 == Abstract Classes
@@ -910,9 +920,10 @@ interface Drawable {
 }
 ```
 
-- You can implement methods in an interface
-- You can give it computed properties
-- Like Java, you cannot do anything that requires stored state
+- Like Java, you can also
+  - Implement methods in an interface
+  - Give it computed properties
+- You cannot do anything that requires stored state
 
 == Using an Interface
 
@@ -946,7 +957,7 @@ class Circle(pos: Coord, val radius: Double):
 - Creating singletons with `object`
 
 #speaker-note[
-  We would probably cover some of these if we adopted Kotlin.
+  We would probably need to cover a few of these if we adopted Kotlin.
 ]
 
 == Learning More
