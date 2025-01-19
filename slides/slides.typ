@@ -506,7 +506,7 @@ println(grade(42))   // prints Pass
 
 == Functions: Block Form
 
-We must provide an explicit return type & `return` statement:
+Here we provide an explicit return type & `return` statement:
 
 #codly(highlights: (
   (line: 1, start: 38, end: 45),
@@ -742,8 +742,8 @@ class Person(var name: String, val birth: LocalDate) {
 
 == Computed Properties
 
-We can have a more natural `Person` API, in which a person's age is treated
-as a property instead of an explicit method call:
+We can have a more natural `Person` API, in which age is obtained via
+property look-up instead of an explicit method call:
 
 ```kotlin
 class Person(var name: String, val birth: LocalDate) {
