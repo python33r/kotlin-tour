@@ -137,6 +137,7 @@ Multiple `.class` files can be bundled:
   for us behind the scenes, allowing us to adopt a procedural style
   in source code.
 
+  Demo:
   + Compile `hello.kt` & run program
   + Disassemble with `javap -c HelloKt`
 
@@ -186,8 +187,7 @@ fun main(args: Array<String>) {
 ```
 
 #speaker-note[
-  Function args are declared name first, followed by a colon, followed
-  by the type.
+  Args are declared name first, followed by a colon, followed by the type.
 
   Can also see that conditional structures look very Java-like.
 
@@ -498,7 +498,7 @@ println(grade(42))   // prints Pass
 ```
 
 #speaker-note[
-  You always need to specify types in parameter list.
+  You always need to specify types in parameter lists.
 
   You often don't need to specify the return type with expression form, as
   you can rely on type inference.
@@ -600,8 +600,8 @@ groups, keyed by first letter:
   Many complex operations can be expressed very concisely using this
   functional programming style.
 
-  If we convert the lists to sequences at the start of a chain of ops,
-  then the operations will be efficient because they won't create
+  NOTE: if we convert the lists to *sequences* at the start of a chain of
+  ops, then the operations will be efficient because they won't create
   any intermediate lists...
 ]
 
@@ -788,8 +788,7 @@ class Person(_name: String, val birth: LocalDate) {
 ```
 
 #speaker-note[
-  This is where IMO the syntax starts to get less elegant, even a little
-  confusing.
+  This is where the syntax starts to get less elegant.
 
   `require` function accepts a boolean expression and throws an exception
   if it is false, using the provided lambda expression to generate the
@@ -864,9 +863,10 @@ class Rectangle(pos: Coord,
 ```
 
 #speaker-note[
-  Worth stressing again the conciseness of this. Four lines of Kotlin give
-  us a hierarchy of one superclass and two subclasses, each with fields,
-  constructor and getter methods.
+  Worth stressing again the conciseness of this.
+
+  Four lines of Kotlin give us a hierarchy of one superclass and two
+  subclasses, each with fields, constructor and getter methods.
 ]
 
 == Abstract Classes
@@ -941,7 +941,7 @@ class Circle(pos: Coord, val radius: Double):
 
 #speaker-note[
   In Java you use the `extends` and `implements` keywords, but in Kotlin
-  you just list the superclass and any interfaces after the `:`.
+  you just list the superclass and any interfaces after the `:`
 
   Demo: `shapes3.kt`
 ]
