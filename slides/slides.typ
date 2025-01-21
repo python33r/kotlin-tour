@@ -248,7 +248,7 @@ fun main(args: Array<String>) {
 #pause
 
 #v(0.5em)
-#tip(title: "Idiomatic Kotlin")[
+#tip(title: "Idiomatic Kotlin", icon: image("kotlin.svg"))[
   Prefer `val` to `var`; use latter only when updating is necessary
 ]
 
