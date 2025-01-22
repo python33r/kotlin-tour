@@ -8,6 +8,10 @@ and properties, without the need for subclassing.
 `letalso.kts` demonstrates the `let` and `also` scope functions, showing how
 the can be used in conjunction with the safe call operator.
 
+`also2.kts` is another example of using the `also` scope function - in this
+case, as a way of adding validity checking code onto the initialization of
+a property. This provides an alternative to using an `init` block.
+
 `with.kts` shows how the `with` scope function can be used.
 
 `typecast.kt` demonstrates type checking and smart casting, via a class

@@ -2,7 +2,7 @@
 
 val x = listOf(9, 3, 6, 2, 8, 5)
 
-println(x::class)
+println(x::class)   // shows that Kotlin is using java.util.ArrayList
 println(x)
 
 println()

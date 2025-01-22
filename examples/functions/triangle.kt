@@ -1,4 +1,5 @@
-// More examples of functions with block bodies
+// Program to compute the area of a triangle, showing
+// more examples of functions with block bodies
 
 fun readNumber(prompt: String): Double {
     print(prompt)

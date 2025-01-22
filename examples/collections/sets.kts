@@ -11,8 +11,9 @@ println("Empty? ${names.isEmpty()}")
 names.add("Alice")
 names.add("Bob")
 names.add("Charlie")
-names.add("David")
-names.add("David")
+names.add("Diane")
+names.add("Diane")   // this should have no effect
+names += "Joe"       // can use overloaded operator instead of add()
 
 println("\nAfter insertions:")
 println(names)

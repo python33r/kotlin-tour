@@ -1,4 +1,5 @@
-// Example of a function definition with a block body
+// Program to find the longest word in a file, showing examples
+// of function definitions with block bodies
 
 import java.io.File
 import kotlin.system.exitProcess

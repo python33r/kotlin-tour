@@ -2,8 +2,8 @@
 
 import java.util.Arrays
 
-// Add an extension function to IntArray (see below)
-fun IntArray.str() = this.joinToString(prefix="[", postfix="]")
+// Add an extension property to IntArray (see below)
+val IntArray.asString get() = this.joinToString(prefix="[", postfix="]")
 
 // Creation
 
@@ -17,7 +17,7 @@ val w = IntArray(5) { i -> i*i*i }      // cubes of ints in range 0..4
 // Pretty printing
 
 println(x)                    // no automatic 'pretty printing' of arrays
-println(x.str())              // ...but we can invoke our own code to do it
+println(x.asString)           // ...but we can invoke our own code to do it
 println(Arrays.toString(x))   // ...or we can call out to Java API
 
 // Iteration: standard 'for each' loop

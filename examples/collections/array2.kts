@@ -1,12 +1,12 @@
 // Array indexing and slicing in Kotlin
 
-// Extension function to facilitate 'pretty printing'
-fun IntArray.str() = this.joinToString(prefix="[", postfix="]")
+// Extension property to facilitate 'pretty printing'
+val IntArray.asString get() = this.joinToString(prefix="[", postfix="]")
 
 val x = intArrayOf(9, 3, 6, 2, 8, 5)
 
 println(x::class)
-println(x.str())
+println(x.asString)
 
 println()
 println("x[0] = ${x[0]}")
