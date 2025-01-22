@@ -328,8 +328,8 @@ when (dayOfWeek) {
   #speaker-note[
     What do you think the second `for` example prints?
 
-    If you really want to do more typing #emoji.face.wink, range in second
-    example can also be written `1 until 10`.
+    If you really want to do more typing, range in second example can also
+    be written `1 until 10`.
 
     Can express a descending range with `10 downTo 1`.
 
@@ -866,11 +866,13 @@ class Person(_name: String, val birth: LocalDate) {
 ```
 
 #speaker-note[
-  `also` is one of Kotlin's *scope functions*; we don't have time to
-  discuss those properly.
+  `also` is one of Kotlin's *scope functions*. It can be used to insert
+  additional actions, specified as a lambda, into an operation of
+  some kind (in this case, the initialization of a property using a
+  constructor argument).
 
-  This is not as 'hacky' as using an `init` block, but repetition of code
-  is a bit annoying.
+  This is not as 'hacky' as using an `init` block, but the repetition of
+  code is a bit annoying.
 
   Let's look at another example...
 
@@ -1000,6 +1002,7 @@ class Circle(pos: Coord, val radius: Double):
 - Generic types
 - Companion objects
 - Creating singletons with `object`
+- Operator overloading
 
 #speaker-note[
   We would probably need to cover a few of these if we adopted Kotlin.
