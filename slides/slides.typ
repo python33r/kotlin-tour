@@ -88,6 +88,8 @@ println("Hello World!")
 
 #speaker-note[
   We would run this with `kotlin hello.kts`
+
+  But Kotlin isn't really designed to work as a scripting language...
 ]
 
 == Hello World, Take 2
@@ -385,6 +387,13 @@ repeat(10) {
   [`Map`], [unordered collection of keys mapped to values]
 )
 
+#speaker-note[
+  Whilst sets & maps make no guarantees about the ordering of their contents,
+  should note that the simplest way of creating a set or map will return
+  implementations of these interfaces where order of insertion into the
+  collection is preserved.
+]
+
 == Creation Patterns
 
 Kotlin provides handy 'factory functions' to create collections:
@@ -401,13 +410,13 @@ Line 2 in this example won't compile!
 `listOf`, `setOf`, `mapOf` return *immutable collections*
 ]
 
-== Mutability
+== Explicit Mutability
 
 If you want mutable collections, you must be explicit:
 
-// #codly(highlights: (
-//   (line: 1, start: 13, end: 19),
-// ))
+#codly(highlights: (
+  (line: 1, start: 13, end: 19),
+))
 ```kotlin
 val fruit = mutableSetOf("Apple", "Banana", "Kiwi")
 fruit.add("Orange")
@@ -416,11 +425,14 @@ fruit.add("Orange")
 #pause
 
 #v(.5em)
+Type must be specified if collection is empty:
+
+#codly(highlights: (
+  (line: 1, start: 25, end: 32),
+))
 ```kotlin
 val data = mutableListOf<Double>()
-File("data.txt").forEachLine {
-    data.add(it.toDouble())
-}
+File("data.txt").forEachLine { data.add(it.toDouble()) }
 println(data.average())
 ```
 
@@ -673,6 +685,12 @@ class Person(var name: String, val birth: LocalDate)
 - `Person` is given a two-parameter constructor that initializes the two
   properties to the given values
 
+#speaker-note[
+  Normal way of writing a class definition can be a little tricky to
+  understand at first because it layers several aspects on top of each
+  other.
+]
+
 == More Explicitly...
 
 One-liner on previous slide is shorthand for
@@ -687,7 +705,7 @@ class Person constructor(_name: String, _birth: LocalDate) {
 #pause
 
 #question[
-  Will this conciseness be confusing for students?
+  Will Kotlin's conciseness be confusing for students?
 ]
 
 == Using The Class
@@ -756,6 +774,9 @@ class Person(var name: String, val birth: LocalDate) {
 ```
 
 #speaker-note[
+  Getter is indented to make its association with the `age` property as
+  clear as possible, but indentation is not required here.
+
   Compiler is smart enough to figure out that there is no need to create
   a backing field to store the age of a person.
 ]
