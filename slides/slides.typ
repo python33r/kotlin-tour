@@ -825,6 +825,31 @@ class Person(_name: String, val birth: LocalDate) {
   name, but the solution is not very elegant.
 
   How would our students take to this? Would they find it confusing?
+]
+
+== Alternatively...
+
+#codly(highlights: (
+  (line: 2, start: 21, end: 25),
+))
+```kotlin
+class Person(_name: String, val birth: LocalDate) {
+    var name = _name.also {
+        require(_name.isNotBlank()) { "Blank name" }
+    }
+    set(value) {
+        require(value.isNotBlank()) { "Blank name" }
+        field = value
+    }
+}
+```
+
+#speaker-note[
+  `also` is one of Kotlin's *scope functions*; we don't have time to
+  discuss those properly.
+
+  This is not as 'hacky' as using an `init` block, but repetition of code
+  is a bit annoying.
 
   Let's look at another example...
 
@@ -920,10 +945,9 @@ interface Drawable {
 }
 ```
 
-- Like Java, you can also
-  - Implement methods in an interface
-  - Give it computed properties
-- You cannot do anything that requires stored state
+- You cannot store state in an interface
+- You can implement methods that don't reference stored state
+- You can implement computed properties
 
 == Using an Interface
 
