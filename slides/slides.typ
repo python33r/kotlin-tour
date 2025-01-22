@@ -233,6 +233,8 @@ fun main(args: Array<String>) {
   var total: Int = 0
   ```]
 
+#pause
+
 - ...or we can exploit *type inference* (preferred):
 
   #nc(left: 1.5em)[```
@@ -548,7 +550,8 @@ Kotlin's *functional programming* support lets us do it in one line!
 - `sumOf()` is a method of numeric collections
 - It expects a 'selector function' that determines values to be summed
 - Selector's only parameter represents a value from collection
-- If selector is a lambda, that parameter has the implicit name `it`
+- Selector can be a $lambda$ expression
+- $lambda$'s parameter has the implicit name '`it`'
 
 #speaker-note[
   This is an example of how concise yet expressive Kotlin can be.
