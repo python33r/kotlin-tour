@@ -3,7 +3,7 @@
 Side-by-side comparison of Java and Kotlin code.
 
 `java-gps` contains the solution to an old piece of COMP1721 coursework,
-an application to analysis GPS data.
+an application to analyze GPS data.
 
 `kotlin-gps` contains a similar solution in Kotlin. This is a mostly straight
 conversion, but with two significant differences.
@@ -24,7 +24,7 @@ elegant ways of handling null values - see `TrackInfo.kt` for examples.
 
 It is also worth comparing the unit tests in `java-gps/src/test/java` and
 `kotlin-gps/src/test/kotlin`. The former are written using JUnit 5 and
-the Hamcrest matchers. The latter are written using the [Kotest][ko]
+the [Hamcrest][ham] matchers. The latter are written using the [Kotest][ko]
 framework. The Java unit tests are reasonably fluent, but the Kotlin tests
 are easier to read (and write).
 
@@ -35,8 +35,8 @@ script:
 
     ./sloc.sh
 
-You'll see from this that the Kotlin application is over 40% shorter than
-the Java application, or about 36% shorter if you include the unit tests
+You'll see from this that the Kotlin application is over 45% shorter than
+the Java application, or about 38% shorter if you include the unit tests
 in the calculation.
 
 ## Running The Applications
@@ -50,4 +50,7 @@ You can run the unit tests with
 
     ./gradlew test
 
+(On Windows systems, omit the `./`)
+
+[ham]: https://hamcrest.org/JavaHamcrest/
 [ko]: https://kotest.io/

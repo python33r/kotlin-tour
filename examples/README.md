@@ -14,7 +14,7 @@ to be compiled explicitly. You can run them with
 
     kotlin file.kts
 
-Note: many of the examples here are `.kts` files for convenience only,
+**Note**: many of the examples here are `.kts` files for convenience only,
 because they contain simple demonstrations of Kotlin syntax rather than
 complete programs. Kotlin isn't really designed to be a scripting language,
 so for serious programming tasks you should write your code to be compiled
