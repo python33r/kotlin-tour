@@ -2,7 +2,7 @@
 #import "@preview/octique:0.1.0": octique
 
 #import "@preview/codly:1.2.0": *
-#import "@preview/codly-languages:0.1.5": *
+#import "@preview/codly-languages:0.1.6": *
 #show: codly-init.with()
 
 #import "@preview/touying:0.5.5": *
@@ -404,19 +404,12 @@ repeat(10) {
 Kotlin provides handy 'factory functions' to create collections:
 ```kotlin
 val fruit = setOf("Apple", "Banana", "Kiwi")
-fruit.add("Orange")   // is this OK?
+fruit.add("Orange")   // compiler error!
 ```
 
 #pause
 
-#error[
-Line 2 in this example won't compile!
-
-`listOf`, `setOf`, `mapOf` return *immutable collections*
-]
-
-== Explicit Mutability
-
+#v(.5em)
 If you want mutable collections, you must be explicit:
 
 #codly(highlights: (
@@ -424,12 +417,11 @@ If you want mutable collections, you must be explicit:
 ))
 ```kotlin
 val fruit = mutableSetOf("Apple", "Banana", "Kiwi")
-fruit.add("Orange")
+fruit.add("Orange")   // this is OK
 ```
 
-#pause
+== Creation Patterns
 
-#v(.5em)
 Type must be specified if collection is empty:
 
 #codly(highlights: (
@@ -437,12 +429,16 @@ Type must be specified if collection is empty:
 ))
 ```kotlin
 val data = mutableListOf<Double>()
-File("data.txt").forEachLine { data.add(it.toDouble()) }
+
+File("data.txt").forEachLine {
+    data.add(it.toDouble())
+}
+
 println(data.average())
 ```
 
 #speaker-note[
-  Second example shows just one of several ways to read lines of text from
+  This example shows just one of several ways to read lines of text from
   a file. `File` is the standard class from `java.io` package and
   `forEachLine` is an extension function plugged into the class by Kotlin.
 
@@ -451,6 +447,32 @@ println(data.average())
   
   Note also how easy it is to convert a string to a number, or compute the
   average of a collection of values.
+]
+
+== Creation Patterns
+
+Alternatively, if we are OK with getting an immutable list:
+
+#codly(highlights: (
+  (line: 1, start: 25, end: 32),
+))
+```kotlin
+val data = buildList {
+    File("data.txt").forEachLine {
+        add(it.toDouble())
+    }
+}
+
+println(data.average())
+```
+
+#speaker-note[
+  This is quite clever. The list that is being created is mutable within
+  `buildList` but the returned list is immutable.
+
+  This also looks a little nicer than the previous example.
+
+  (There is also `buildSet` and `buildMap`...)
 ]
 
 == Element Access
