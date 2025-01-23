@@ -4,11 +4,11 @@ class Rectangle(w: Double, h: Double) {
     // Note: no use of val or var in parameter list, because we are
     // defining properties separately (see below)
 
-    // Initialiser block checks values supplied to constructor
+    // Initializer block checks values supplied to constructor
 
     init {
-        require(w > 0.0) { "width must be > 0" }
-        require(h > 0.0) { "height must be > 0" }
+        require(w > 0.0) { "invalid width: $w" }
+        require(h > 0.0) { "invalid height: $h" }
     }
 
     // Properties width & height have custom setters to check the
@@ -16,13 +16,13 @@ class Rectangle(w: Double, h: Double) {
 
     var width = w
         set(value) {
-            require(value > 0) { "width must be > 0" }
+            require(value > 0) { "invalid width: $value" }
             field = value
         }
 
     var height = h
         set(value) {
-            require(value > 0) { "height must be > 0" }
+            require(value > 0) { "invalid height: $value" }
             field = value
         }
 

@@ -22,7 +22,7 @@ class Track() {
             it.drop(1).forEach { line ->
                 with (line.split(",")) {
                     if (size != NUM_CSV_COLUMNS) {
-                        throw IOException("Invalid file format")
+                        throw IOException("invalid file format")
                     }
                     points.add(Point(
                         time = ZonedDateTime.parse(get(TIME_FIELD)),

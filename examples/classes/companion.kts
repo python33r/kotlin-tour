@@ -21,8 +21,13 @@ class Person private constructor(val name: String) {
             return Person(name)
         }
     }
+
+    override fun toString() = "Person(name=\"$name\")"
 }
 
+
+// Line below would give a compiler error
+//p = Person("Joe")
 
 println("Creating Joe...")
 val p1 = Person.create("Joe")

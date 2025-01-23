@@ -6,10 +6,10 @@ import java.time.LocalDate
 
 class Person(_name: String, val birth: LocalDate) {
     var name = _name.also {
-        require(_name.isNotBlank()) { "Name cannot be blank" }
+        require(_name.isNotBlank()) { "name cannot be blank" }
     }
     set (value) {
-        require(value.isNotBlank()) { "Cannot change name to a blank string" }
+        require(value.isNotBlank()) { "cannot change name to blank string" }
         field = value
     }
 

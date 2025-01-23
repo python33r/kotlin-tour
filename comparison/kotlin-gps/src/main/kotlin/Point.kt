@@ -16,8 +16,8 @@ class Point(
     }
 
     init {
-        require(longitude in MIN_LONGITUDE..MAX_LONGITUDE) { "Invalid longitude" }
-        require(latitude in MIN_LATITUDE..MAX_LATITUDE) { "Invalid latitude" }
+        require(longitude in MIN_LONGITUDE..MAX_LONGITUDE) { "invalid longitude" }
+        require(latitude in MIN_LATITUDE..MAX_LATITUDE) { "invalid latitude" }
     }
 
     override fun toString() = String.format(
