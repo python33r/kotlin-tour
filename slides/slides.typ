@@ -253,7 +253,9 @@ fun main(args: Array<String>) {
 
 #v(0.5em)
 #tip(title: "Idiomatic Kotlin", icon: image("kotlin.svg"))[
-  Prefer `val` to `var`; use latter only when updating is necessary
+  Prefer `val` to `var` !
+  
+  Use `var` only when updating is necessary
 ]
 
 #speaker-note[
@@ -263,12 +265,13 @@ fun main(args: Array<String>) {
   Think of `val` as equivalent to using `final` in Java.
 ]
 
-== Conditionals
+== Conditional Execution
 
-- You've seen `if`...`else` already
+- `if`, `else if` and `else` are used very much like they are in Java
 
-- Conditionals are much like they are in Java---but with the important
-  difference that they are *expressions* in Kotlin!
+- ...but these structures are *expressions* in Kotlin!
+// - Conditionals are much like they are in Java---but with the important
+//   difference that they are *expressions* in Kotlin!
 
   #pad(left: 1.5em, `val largest = if (a > b) a else b`)
 
