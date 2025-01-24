@@ -164,40 +164,6 @@ To include the Kotlin runtime library:
   then be portable to any system with a JVM...
 ]
 
-== Hello Person or World
-
-Using program arguments, `if` and string interpolation:
-
-#pause
-
-// Need smaller code font from this point on
-#show raw.where(lang: "kotlin"): set text(size: 0.9em)
-
-#codly(highlights: (
-  (line: 1, start: 10, end: 28),
-  (line: 3, start:24, end: 33),
-))
-```kotlin
-fun main(args: Array<String>) {
-    if (args.size > 0) {
-        println("Hello ${args[0]}!")
-    }
-    else {
-        println("Hello World!")
-    }
-}
-```
-
-#speaker-note[
-  Args are declared name first, followed by a colon, followed by the type.
-
-  Can also see that conditional structures look very Java-like.
-
-  String interp is similar to Python f-strings, except that the braces are
-  not required when just using a variable's name, but the `$` prefix is
-  always required.
-]
-
 == Basic Data Types
 
 - `Char`, `Int`, `Long`, `Float`, `Double`, etc
@@ -270,14 +236,15 @@ fun main(args: Array<String>) {
 - `if`, `else if` and `else` are used very much like they are in Java
 
 - ...but these structures are *expressions* in Kotlin!
-// - Conditionals are much like they are in Java---but with the important
-//   difference that they are *expressions* in Kotlin!
 
   #pad(left: 1.5em, `val largest = if (a > b) a else b`)
 
 - Instead of `switch`, Kotlin has the more powerful `when`
 
 == `when` Expressions
+
+// Need smaller code font from this point on
+#show raw.where(lang: "kotlin"): set text(size: 0.9em)
 
 ```kotlin
 val grade = when (mark) {
