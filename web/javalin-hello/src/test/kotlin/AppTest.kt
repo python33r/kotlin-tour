@@ -10,7 +10,7 @@ class AppTest: StringSpec({
 
     val app = Hello().app
 
-    "/ yields a 'Hello World' greeting" {
+    "Path / yields 'Hello World' greeting" {
         test(app) { _, client ->
             val response = client.get("/")
             response.code shouldBe 200
@@ -19,7 +19,7 @@ class AppTest: StringSpec({
         }
     }
 
-    "/hello yields a personalized greeting" {
+    "Path /hello/* yields personalized greeting" {
         test(app) { _, client ->
             val response = client.get("/hello/Nick")
             response.code shouldBe 200
