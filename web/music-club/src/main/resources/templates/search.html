@@ -1,6 +1,6 @@
 {% if searchTerm %}
   <p>Search results for '{{ searchTerm }}':</p>
-  {% if results is empty %}
+  {% if results.count() == 0 %}
   <p>No matching albums found.</p>
   {% else %}
   <ul>

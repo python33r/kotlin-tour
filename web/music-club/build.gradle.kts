@@ -29,16 +29,20 @@ application {
     mainClass = "AppMainKt"
 }
 
+tasks.named<JavaExec>("run") {
+    description = "Runs the web application."
+}
+
 tasks.register<JavaExec>("createdb") {
     group = "application"
-    description = "Creates the database"
+    description = "Creates the database."
     classpath = sourceSets.main.get().runtimeClasspath
     mainClass = "CreateDbKt"
 }
 
 tasks.register<JavaExec>("query") {
     group = "application"
-    description = "Runs some queries against the database"
+    description = "Runs some queries against the database."
     classpath = sourceSets.main.get().runtimeClasspath
     mainClass = "QueryKt"
 }
