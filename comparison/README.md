@@ -52,5 +52,9 @@ You can run the unit tests with
 
 (On Windows systems, omit the `./`)
 
+Note: Availability of JDK 21 is assumed. If you have a different version
+on your system, edit `build.gradle.kts` and alter the version number used in
+the toolchain setting accordingly.
+
 [ham]: https://hamcrest.org/JavaHamcrest/
 [ko]: https://kotest.io/

@@ -8,6 +8,10 @@ it to issue both generic and personalized greetings. This functionality
 requires very few lines of code - about 15 (including blank lines) for the
 application itself, and double that for the tests.
 
+Note: Availability of JDK 21 is assumed. If you have a different version
+on your system, edit `build.gradle.kts` and change the version number
+supplied to `jvmToolchain` accordingly.
+
 To work with this in IntelliJ IDEA, simply open this directory as a new
 project. IntelliJ should create Gradle tasks which will be accessible from
 the Gradle tool panel.

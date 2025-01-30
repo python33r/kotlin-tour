@@ -3,6 +3,10 @@
 Website for a music club, implemented using [Javalin][jav], [Pebble][peb]
 templates and the [Exposed][orm] ORM framework.
 
+Note: Availability of JDK 21 is assumed. If you have a different version
+on your system, edit `build.gradle.kts` and change the version number
+supplied to `jvmToolchain` accordingly.
+
 To work with this in IntelliJ IDEA, simply open this directory as a new
 project. IntelliJ should create Gradle tasks which will be accessible from
 the Gradle tool panel. You'll need to use the `createdb`, `query` and `run`
