@@ -82,13 +82,6 @@ fun main() {
         }
 
         Albums.insert {
-            it[title] = "Trouble With Machines"
-            it[artist] = d97
-            it[year] = 2012
-            it[youtube] = yt("OLAK5uy_kOxN7hQjFMLt6qlhzZBmCJ9HePfECqbSE")
-        }
-
-        Albums.insert {
             it[title] = "Stay For The Ending"
             it[artist] = d97
             it[year] = 2023
@@ -96,15 +89,10 @@ fun main() {
         }
 
         Albums.insert {
-            it[title] = "The Thing With Feathers"
-            it[artist] = birdsong
-            it[year] = 2019
-        }
-
-        Albums.insert {
-            it[title] = "Selling England By The Pound"
-            it[artist] = genesis
-            it[year] = 1973
+            it[title] = "Trouble With Machines"
+            it[artist] = d97
+            it[year] = 2012
+            it[youtube] = yt("OLAK5uy_kOxN7hQjFMLt6qlhzZBmCJ9HePfECqbSE")
         }
 
         Albums.insert {
@@ -115,10 +103,9 @@ fun main() {
         }
 
         Albums.insert {
-            it[title] = "Central Reservation"
-            it[artist] = bethOrton
-            it[year] = 1999
-            it[youtube] = yt("OLAK5uy_k0EHZkg24DrZ82JMmrhZigTxLm60Wp3cU")
+            it[title] = "Selling England By The Pound"
+            it[artist] = genesis
+            it[year] = 1973
         }
 
         Albums.insert {
@@ -126,6 +113,12 @@ fun main() {
             it[artist] = steelyDan
             it[year] = 1977
             it[youtube] = yt("OLAK5uy_nNSt2pxzqur9OlUok2h9mJDnHQ1YqFA-8")
+        }
+
+        Albums.insert {
+            it[title] = "The Thing With Feathers"
+            it[artist] = birdsong
+            it[year] = 2019
         }
 
         Albums.insert {
@@ -147,6 +140,13 @@ fun main() {
             it[artist] = stevenWilson
             it[year] = 2023
             it[youtube] = yt("OLAK5uy_ng3Ruh6KTb_yeqdsM2rOX-RQTj4pNwLyo")
+        }
+
+        Albums.insert {
+            it[title] = "Central Reservation"
+            it[artist] = bethOrton
+            it[year] = 1999
+            it[youtube] = yt("OLAK5uy_k0EHZkg24DrZ82JMmrhZigTxLm60Wp3cU")
         }
     }
 }
