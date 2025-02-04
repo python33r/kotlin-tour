@@ -33,8 +33,8 @@ object MusicClub {
 
         app.get("/artists") {
             transaction {
-                val data = mapOf("artists" to Artist.all().sortedBy { it.name }.toList())
-                it.render("templates/artists.html", data)
+                val artists = Artist.all().sortedBy { it.name }.toList()
+                it.render("templates/artists.html", mapOf("artists" to artists))
             }
         }
 
@@ -55,8 +55,8 @@ object MusicClub {
         app.get("/albums") {
             transaction {
                 val comparator = compareBy<Album> { it.artist.name }.thenBy { it.year }
-                val data = mapOf("albums" to Album.all().sortedWith(comparator).toList())
-                it.render("templates/albums.html", data)
+                val albums = Album.all().sortedWith(comparator).toList()
+                it.render("templates/albums.html", mapOf("albums" to albums))
             }
         }
 
