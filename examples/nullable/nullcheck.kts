@@ -2,10 +2,10 @@
 // (compare with safecall.kts)
 
 fun processText(str: String?): String? {
-  if (str != null) {
-    return str.reversed().uppercase()
-  }
-  return null
+    if (str != null) {
+        return str.reversed().uppercase()
+    }
+    return null
 }
 
 print("Enter a string: ")

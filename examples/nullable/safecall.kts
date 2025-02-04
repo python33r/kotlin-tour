@@ -2,7 +2,7 @@
 // (compare with nullcheck.kts)
 
 fun processText(str: String?): String? {
-  return str?.reversed()?.uppercase()
+    return str?.reversed()?.uppercase()
 }
 
 print("Enter a string: ")
