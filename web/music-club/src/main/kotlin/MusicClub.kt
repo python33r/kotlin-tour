@@ -1,3 +1,5 @@
+// Music Club web application
+
 import io.javalin.Javalin
 import io.javalin.rendering.template.JavalinPebble
 import org.jetbrains.exposed.sql.Database

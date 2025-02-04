@@ -1,3 +1,5 @@
+// Database schema for the Music Club app
+
 import org.jetbrains.exposed.dao.id.UIntIdTable
 import org.jetbrains.exposed.sql.ReferenceOption
 

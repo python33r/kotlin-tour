@@ -1,3 +1,5 @@
+// Mapping of entity classes onto DB tables for Music Club app
+
 import org.jetbrains.exposed.dao.UIntEntity
 import org.jetbrains.exposed.dao.UIntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
