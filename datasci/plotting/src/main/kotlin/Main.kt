@@ -1,3 +1,5 @@
+// Example of plotting datasets using Kandy
+
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
@@ -20,7 +22,7 @@ fun main() {
     println(df.describe())
 
     // Create two data subsets, one consisting of measurements made at noon,
-    // the other of measurments made every other hour in April
+    // the other of measurements made every other hour in April
 
     val Time by column<LocalDateTime>()
 
@@ -30,7 +32,7 @@ fun main() {
         Time().month == java.time.Month.APRIL && Time().hour % 2 == 0
     }
 
-    // Generate a scatter plot of relative humidity vs temperature at noon
+    // Generate scatter plot of relative humidity vs temperature at noon
 
     val firstPlot = noonData.plot {
         points {
@@ -45,7 +47,7 @@ fun main() {
 
     firstPlot.save("humidity-vs-temp.svg")
 
-    // Generate a time-series plot of wind speed in April
+    // Generate time-series plot of wind speed in April
 
     val secondPlot = aprilData.plot {
         line {
