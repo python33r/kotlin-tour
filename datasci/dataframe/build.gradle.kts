@@ -10,6 +10,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:dataframe:0.15.0")
+    runtimeOnly("org.slf4j:slf4j-nop:2.0.16")
 }
 
 kotlin {
