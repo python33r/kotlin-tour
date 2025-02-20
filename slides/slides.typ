@@ -1,8 +1,8 @@
-#import "@preview/gentle-clues:1.1.0": *
+#import "@preview/gentle-clues:1.2.0": *
 #import "@preview/octique:0.1.0": octique
 
 #import "@preview/codly:1.2.0": *
-#import "@preview/codly-languages:0.1.6": *
+#import "@preview/codly-languages:0.1.7": *
 #show: codly-init.with()
 
 #import "@preview/touying:0.5.5": *
