@@ -1,5 +1,6 @@
 #import "@preview/gentle-clues:1.2.0": *
-#import "@preview/octique:0.1.0": octique
+//#import "@preview/octique:0.1.0": octique
+#import "@local/octique:0.1.0": octique    // temporary fix
 
 #import "@preview/codly:1.2.0": *
 #import "@preview/codly-languages:0.1.7": *
@@ -894,6 +895,10 @@ class Person(_name: String, val birth: LocalDate) {
 
 == Example
 
+#codly(highlights: (
+  (line: 3, start: 1, end: 4),
+  (line: 5, start: 45, end: 56),
+))
 ```kotlin
 typealias Coord = Pair<Double,Double>
 
