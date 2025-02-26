@@ -31,10 +31,10 @@ class Point(
         val lambda2 = p.longitude * PI / 180.0
         val delta = abs(lambda1 - lambda2)
 
-        val firstTerm = cos(phi2)*sin(delta)
-        val secondTerm = cos(phi1)*sin(phi2) - sin(phi1)*cos(phi2)*cos(delta)
-        val top = sqrt(firstTerm*firstTerm + secondTerm*secondTerm)
-        val bottom = sin(phi1)*sin(phi2) + cos(phi1)*cos(phi2)*cos(delta)
+        val firstTerm = cos(phi2) * sin(delta)
+        val secondTerm = cos(phi1) * sin(phi2) - sin(phi1) * cos(phi2) * cos(delta)
+        val top = sqrt(firstTerm * firstTerm + secondTerm * secondTerm)
+        val bottom = sin(phi1) * sin(phi2) + cos(phi1) * cos(phi2) * cos(delta)
 
         return MEAN_EARTH_RADIUS * atan2(top, bottom)
     }

@@ -12,7 +12,7 @@ const val ELEV_FIELD = 3
 class Track() {
     private val points = mutableListOf<Point>()
 
-    constructor(filename: String) : this() {
+    constructor(filename: String): this() {
         readData(filename)
     }
 
