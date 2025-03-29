@@ -2,8 +2,7 @@
 //#import "@preview/octique:0.1.0": octique
 #import "@local/octique:0.1.0": octique
 
-//#import "@preview/codly:1.2.0": *
-#import "@local/codly:1.3.0": *
+#import "@preview/codly:1.3.0": *
 #import "@preview/codly-languages:0.1.8": *
 #show: codly-init.with()
 
