@@ -568,13 +568,14 @@ is shorthand for
 #no-codly[
 ```
 fun square(value: Double) = value * value
-numbers.sumOf(square)
+numbers.sumOf(::square)
 ```
 ]
 
 #speaker-note[
   Version with a named function is perhaps clearer, particularly to
-  those new to Kotlin, but it is considerably more verbose.
+  those new to Kotlin, but it is considerably more verbose, and
+  such definitions create unnecessary clutter in source code.
 ]
 
 == Other Examples
