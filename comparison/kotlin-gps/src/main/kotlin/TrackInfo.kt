@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
         exitProcess(1)
     }
 
-    try {
+    val result = runCatching {
         with (Track(args[0])) {
             println("Points in track: $size")
 
@@ -19,8 +19,10 @@ fun main(args: Array<String>) {
             averageSpeed?.let { printf("Average speed = %.1f m/s\n", it) }
         }
     }
-    catch (error: Exception) {
-        println("Error: ${error.message}")
+
+    if (result.isFailure) {
+        println("Computation failed with an exception!")
+        println(result.exceptionOrNull())
         exitProcess(2)
     }
 }
