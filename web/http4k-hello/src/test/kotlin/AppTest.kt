@@ -3,6 +3,7 @@ import io.kotest.matchers.string.contain
 import org.http4k.core.ContentType
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
+import org.http4k.core.Status.Companion.NOT_FOUND
 import org.http4k.core.Status.Companion.OK
 import org.http4k.kotest.shouldHaveBody
 import org.http4k.kotest.shouldHaveContentType
@@ -24,5 +25,10 @@ class AppTest: StringSpec({
         response shouldHaveStatus OK
         response shouldHaveContentType ContentType.TEXT_HTML
         response shouldHaveBody(contain("<p>Hello Nick!</p>"))
+    }
+
+    "Path of /hello yields a Page Not Found error" {
+        val response = app(Request(GET, "/hello"))
+        response shouldHaveStatus NOT_FOUND
     }
 })
