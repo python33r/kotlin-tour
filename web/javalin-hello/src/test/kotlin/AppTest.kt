@@ -10,7 +10,7 @@ class AppTest: StringSpec({
 
     val app = Hello().app
 
-    "Path / yields 'Hello World' greeting" {
+    "Path / yields 'Hello World!' greeting" {
         test(app) { _, client ->
             val response = client.get("/")
             response.code shouldBe 200
@@ -19,12 +19,19 @@ class AppTest: StringSpec({
         }
     }
 
-    "Path /hello/* yields personalized greeting" {
+    "Path /hello/Nick yields 'Hello Nick!' greeting" {
         test(app) { _, client ->
             val response = client.get("/hello/Nick")
             response.code shouldBe 200
             response.headers["Content-Type"] shouldBe "text/html"
             response.body?.string() shouldContain "<p>Hello Nick</p>"
+        }
+    }
+
+    "Path /hello yields Page Not Found error" {
+        test(app) { _, client ->
+            val response = client.get("/hello")
+            response.code shouldBe 404
         }
     }
 })

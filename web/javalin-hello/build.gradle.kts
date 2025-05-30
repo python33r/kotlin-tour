@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.1.10"
+    kotlin("jvm") version "2.1.21"
     application
 }
 
@@ -7,8 +7,8 @@ repositories {
     mavenCentral()
 }
 
-val javalinVersion = "6.4.0"
-val kotestVersion = "5.9.0"
+val javalinVersion = "6.6.0"
+val kotestVersion = "5.9.1"
 
 dependencies {
     implementation("io.javalin:javalin:$javalinVersion")
