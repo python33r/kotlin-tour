@@ -6,7 +6,7 @@ if [[ $# == 0 ]]; then
     exit 1
 fi
 
-wget --output-document kotlinc.zip https://github.com/JetBrains/kotlin/releases/download/v2.1.10/kotlin-compiler-2.1.10.zip
+curl -L -o kotlinc.zip https://github.com/JetBrains/kotlin/releases/download/v2.1.21/kotlin-compiler-2.1.21.zip
 unzip -DD kotlinc.zip -d $1
 rm kotlinc.zip
 
