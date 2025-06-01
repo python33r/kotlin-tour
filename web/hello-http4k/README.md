@@ -1,7 +1,7 @@
-# http4k-hello
+# hello-http4k
 
 A very basic 'Hello World' application, implemented using [http4k][h4k],
-with accompanying tests. Compare this with `javalin-hello`.
+with accompanying tests. Compare this with `hello-javalin` and `hello-ktor`.
 
 Note: Availability of JDK 21 is assumed. If you have a different version
 on your system, edit `build.gradle.kts` and change the version number

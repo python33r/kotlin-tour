@@ -1,4 +1,4 @@
-# javalin-hello
+# hello-javalin
 
 A very basic 'Hello World' application, implemented using [Javalin][jav],
 with accompanying tests.
