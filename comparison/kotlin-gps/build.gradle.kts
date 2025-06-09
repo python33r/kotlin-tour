@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.1.10"
+    kotlin("jvm") version "2.1.21"
     application
 }
 
@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-val kotestVersion = "5.9.0"
+val kotestVersion = "5.9.1"
 
 dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")

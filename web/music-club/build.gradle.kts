@@ -16,7 +16,7 @@ dependencies {
     implementation("io.pebbletemplates:pebble:3.1.6")
     // note: Pebble version can't be upgraded yet due to a Javalin dependency
     implementation("org.slf4j:slf4j-simple:2.0.16")
-    implementation("org.xerial:sqlite-jdbc:3.49.1.0")
+    implementation("org.xerial:sqlite-jdbc:3.50.1.0")
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")

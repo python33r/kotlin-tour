@@ -17,6 +17,10 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:5.9.1")
 }
 
+kotlin {
+    jvmToolchain(21)
+}
+
 tasks.test {
     useJUnitPlatform()
     testLogging {
