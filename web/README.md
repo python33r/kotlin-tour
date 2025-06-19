@@ -14,3 +14,5 @@ Samples of web applications implemented in Kotlin.
 `music-club` is a more fully-featured, database-backed Javalin application,
 using the [Exposed](https://jetbrains.github.io/Exposed/) framework to
 handle database queries.
+
+`music-club-ktor` is `music-club` with Ktor used in place of Javalin.

@@ -1,6 +1,6 @@
-# music-club
+# music-club-ktor
 
-Website for a music club, implemented using [Javalin][jav], [Pebble][peb]
+Website for a music club, implemented using [Ktor][ktr], [Pebble][peb]
 templates and the [Exposed][orm] ORM framework.
 
 Examine `Tables.kt` to see how tables are defined using Exposed. Examine
@@ -8,8 +8,11 @@ Examine `Tables.kt` to see how tables are defined using Exposed. Examine
 populate those tables. Examine `Query.kt` to see how Exposed's DSL can be
 used to perform queries.
 
-The web application itself is defined in `MusicClub.kt`. It performs its
-queries in a different way, using Exposed's Data Access Objects API.
+The web application itself is defined in `Application.kt`, `Database.kt`,
+`Templates.kt` and `Routing.kt`. Most of the logic is in the last of these
+files.
+
+The application uses Exposed's Data Access Objects API to perform queries.
 `Entities.kt` provides the entity class definitions and shows how they are
 mapped onto the corresponding database tables.
 
@@ -34,6 +37,6 @@ doing anything else. After that, you can execute the `run` task to run
 the server. When the server is up and running, visit http://localhost:7070/
 to interact with the application.
 
-[jav]: https://javalin.io/
+[ktr]: https://ktor.io/
 [peb]: https://pebbletemplates.io/
 [orm]: https://jetbrains.github.io/Exposed/
