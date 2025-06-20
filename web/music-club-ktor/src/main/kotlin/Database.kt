@@ -1,3 +1,5 @@
+// Database configuration
+
 import io.ktor.server.application.Application
 import org.jetbrains.exposed.sql.Database
 

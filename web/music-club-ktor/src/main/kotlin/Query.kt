@@ -1,5 +1,5 @@
 // Example of using Exposed's DSL for executing SQL queries
-// (See the Javalin app for examples of using the DAO approach)
+// (See request handlers in Routing.kt for examples of using the DAO approach)
 
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.StdOutSqlLogger

@@ -1,3 +1,5 @@
+// Application configuration & entry point
+
 import io.ktor.server.application.Application
 
 fun Application.module() {

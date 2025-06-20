@@ -22,8 +22,12 @@ supplied to `jvmToolchain` accordingly.
 
 To work with this application in IntelliJ IDEA, simply open this directory
 as a new project. IntelliJ should create Gradle tasks which will be
-accessible from the Gradle tool panel. You'll need to use the `createdb`,
-`query` and `run` tasks from the `application` section of the task list.
+accessible from the Gradle tool panel, in the `application` section of the
+task list. You can use the `createdb` task to create the database, and the
+`query` task to run some queries against it.
+
+The `run` task will run the server. You can also run the server via the
+`EngineMain` run configuration that IntelliJ creates automatically for you.
 
 To work from the command line, use the provided Gradle script. For example,
 to create the database, do

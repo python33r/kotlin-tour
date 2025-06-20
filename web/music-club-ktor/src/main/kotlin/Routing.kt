@@ -1,3 +1,6 @@
+// Routing and application logic for Music Club app
+// (see also the templates in src/main/resources/templates)
+
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.pebble.respondTemplate
@@ -43,7 +46,7 @@ fun Application.configureRouting() {
                 val artist = call.parameters["id"]?.let {
                     Artist.findById(it.toUInt())
                 }
-                when(artist) {
+                when (artist) {
                     null -> call.respond(HttpStatusCode.NotFound)
                     else -> {
                         val albums = artist.albums.sortedBy { it.year }.toList()
