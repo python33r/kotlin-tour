@@ -43,9 +43,14 @@ fun Application.configureRouting() {
 
         get("/artists/{id}") {
             newSuspendedTransaction {
-                val artist = call.parameters["id"]?.let {
-                    Artist.findById(it.toUInt())
+                val result = runCatching {
+                    call.parameters["id"]?.let {
+                        Artist.findById(it.toUInt())
+                    }
                 }
+
+                val artist = result.getOrNull()
+
                 when (artist) {
                     null -> call.respond(HttpStatusCode.NotFound)
                     else -> {
@@ -71,9 +76,14 @@ fun Application.configureRouting() {
 
         get("/albums/{id}") {
             newSuspendedTransaction {
-                val album = call.parameters["id"]?.let {
-                    Album.findById(it.toUInt())
+                val result = runCatching {
+                    call.parameters["id"]?.let {
+                        Album.findById(it.toUInt())
+                    }
                 }
+
+                val album = result.getOrNull()
+
                 when (album) {
                     null -> call.respond(HttpStatusCode.NotFound)
                     else -> call.respondTemplate("album.html", mapOf(

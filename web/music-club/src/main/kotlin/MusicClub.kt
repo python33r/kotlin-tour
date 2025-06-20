@@ -6,13 +6,13 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object MusicClub {
-    val db = Database.connect("jdbc:sqlite:file:music.db")
-
     val app: Javalin = Javalin.create {
         it.fileRenderer(JavalinPebble())
     }
 
     init {
+        Database.connect("jdbc:sqlite:file:music.db")
+
         app.get("/") {
             transaction {
                 it.render("templates/index.html", mapOf(
@@ -42,8 +42,13 @@ object MusicClub {
 
         app.get("/artists/{id}") {
             transaction {
-                val id = it.pathParam("id").toUInt()
-                val artist = Artist.findById(id)
+                val result = runCatching {
+                    val id = it.pathParam("id").toUInt()
+                    Artist.findById(id)
+                }
+
+                val artist = result.getOrNull()
+
                 val data = mapOf(
                     "name" to artist?.name,
                     "solo" to artist?.isSolo,
@@ -64,8 +69,13 @@ object MusicClub {
 
         app.get("/albums/{id}") {
             transaction {
-                val id = it.pathParam("id").toUInt()
-                val album = Album.findById(id)
+                val result = runCatching {
+                    val id = it.pathParam("id").toUInt()
+                    Album.findById(id)
+                }
+
+                val album = result.getOrNull()
+
                 val data = mapOf(
                     "artist" to album?.artist,
                     "title" to album?.title,
