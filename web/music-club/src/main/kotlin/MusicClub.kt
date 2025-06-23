@@ -2,7 +2,6 @@
 
 import io.javalin.Javalin
 import io.javalin.rendering.template.JavalinPebble
-import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object MusicClub {
@@ -11,7 +10,7 @@ object MusicClub {
     }
 
     init {
-        Database.connect("jdbc:sqlite:file:music.db")
+        connectToDatabase()
 
         app.get("/") {
             transaction {

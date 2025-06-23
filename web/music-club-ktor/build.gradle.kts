@@ -43,12 +43,12 @@ tasks.register<JavaExec>("createdb") {
     group = "application"
     description = "Creates the database."
     classpath = sourceSets.main.get().runtimeClasspath
-    mainClass = "CreateDbKt"
+    mainClass = "DatabaseKt"
 }
 
-tasks.register<JavaExec>("query") {
+tasks.register<JavaExec>("querydemo") {
     group = "application"
     description = "Runs some queries against the database."
     classpath = sourceSets.main.get().runtimeClasspath
-    mainClass = "QueryKt"
+    mainClass = "QueryDemoKt"
 }

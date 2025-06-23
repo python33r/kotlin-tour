@@ -1,5 +1,5 @@
-// Program to create the Music Club database
-// (demonstrates use of Exposed's DSL for SQL statements)
+// Database-related code
+// (See also Tables.kt & Entities.kt)
 
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -8,13 +8,23 @@ import org.jetbrains.exposed.sql.addLogger
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
-fun main() {
-    Database.connect("jdbc:sqlite:file:music.db")
+// Common code to handle database connection
+// (used by web app and program below)
 
+const val DATABASE_URL = "jdbc:sqlite:file:music.db"
+
+fun connectToDatabase() {
+    Database.connect(DATABASE_URL)
+}
+
+// Separate program to create the Music Club database
+// (demonstrates use of Exposed's DSL for SQL statements)
+
+fun createTables() {
     transaction {
         addLogger(StdOutSqlLogger)
 
-        // Create tables
+        // Start from empty tables
 
         SchemaUtils.drop(Artists, Albums)
         SchemaUtils.create(Artists, Albums)
@@ -149,4 +159,9 @@ fun main() {
             it[youtube] = yt("OLAK5uy_k0EHZkg24DrZ82JMmrhZigTxLm60Wp3cU")
         }
     }
+}
+
+fun main() {
+    connectToDatabase()
+    createTables()
 }
