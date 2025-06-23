@@ -3,7 +3,13 @@
 import io.ktor.server.application.Application
 
 fun Application.module() {
-    configureDatabase()
+    connectToDatabase()
+    configureTemplates()
+    configureRouting()
+}
+
+fun Application.testModule() {
+    connectToTestDatabase()
     configureTemplates()
     configureRouting()
 }

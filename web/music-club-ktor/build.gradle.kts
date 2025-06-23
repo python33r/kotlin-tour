@@ -31,6 +31,13 @@ kotlin {
     jvmToolchain(21)
 }
 
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
 application {
     mainClass = "io.ktor.server.jetty.jakarta.EngineMain"
 }

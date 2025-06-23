@@ -10,14 +10,63 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
 const val DATABASE_URL = "jdbc:sqlite:file:music.db"
+const val TEST_DB_URL = "jdbc:sqlite:file:test.db"
 
 // Configuration for Music Club app
 
-fun Application.configureDatabase() {
+fun Application.connectToDatabase() {
     Database.connect(DATABASE_URL)
 }
 
-// Seperate application to set up database with initial content
+// Configuration for testing of Music Club app
+// (Uses smaller DB containing dummy data)
+
+fun Application.connectToTestDatabase() {
+    Database.connect(TEST_DB_URL)
+}
+
+// Functions to populate test DB
+
+fun createTestTables() {
+    transaction {
+        SchemaUtils.drop(Artists, Albums)
+        SchemaUtils.create(Artists, Albums)
+
+        val artist1 = Artists.insert {
+            it[name] = "A Band"
+        } get Artists.id
+
+        val artist2 = Artists.insert {
+            it[name] = "Doe, John"
+            it[isSolo] = true
+        } get Artists.id
+
+        Albums.insert {
+            it[title] = "An Album"
+            it[artist] = artist1
+            it[year] = 2025
+        }
+
+        Albums.insert {
+            it[title] = "First Album"
+            it[artist] = artist2
+            it[year] = 2019
+        }
+
+        Albums.insert {
+            it[title] = "Second Album"
+            it[artist] = artist2
+            it[year] = 2023
+        }
+    }
+}
+
+fun createTestDatabase() {
+    Database.connect(TEST_DB_URL)
+    createTestTables()
+}
+
+// Seperate application to set up DB with realistic initial content
 
 fun createTables() {
     transaction {
