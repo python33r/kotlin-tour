@@ -1,15 +1,14 @@
-import java.io.IOException
-import java.time.ZonedDateTime
-
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.withClue
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.doubles.plusOrMinus
 import io.kotest.matchers.shouldBe
+import java.io.IOException
+import java.time.ZonedDateTime
 
 @Suppress("unused")
-class TrackTest: StringSpec({
+class TrackTest : StringSpec({
     isolationMode = IsolationMode.InstancePerTest
 
     val tolerance = 1e-5
@@ -32,7 +31,10 @@ class TrackTest: StringSpec({
     }
 
     val trackFourPoints = Track().apply {
-        add(p1); add(p2); add(p3); add(p4)
+        add(p1)
+        add(p2)
+        add(p3)
+        add(p4)
     }
 
     "Track starts out with a size of zero" {

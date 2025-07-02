@@ -35,9 +35,8 @@ script:
 
     ./sloc.sh
 
-You'll see from this that the Kotlin application is over 45% shorter than
-the Java application, or about 38% shorter if you include the unit tests
-in the calculation.
+You'll see from this that the Kotlin application is nearly 40% shorter than
+the Java application.
 
 ## Running The Applications
 

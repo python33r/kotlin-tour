@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.1.21"
+    id("io.gitlab.arturbosch.detekt") version "1.23.8"
     application
 }
 
@@ -23,6 +24,10 @@ tasks.withType<Test>().configureEach {
     testLogging {
         events("passed", "skipped", "failed")
     }
+}
+
+detekt {
+    toolVersion = "1.23.8"
 }
 
 application {

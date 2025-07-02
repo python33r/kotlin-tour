@@ -1,14 +1,13 @@
-import java.time.ZonedDateTime
-import kotlin.math.PI
-
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.doubles.plusOrMinus
 import io.kotest.matchers.shouldBe
+import java.time.ZonedDateTime
+import kotlin.math.PI
 
 @Suppress("unused")
-class PointTest: StringSpec({
+class PointTest : StringSpec({
     val time = ZonedDateTime.now()
     val point = Point(time, 1.5, 50.0, 25.0)
     val tolerance = 1e-6
